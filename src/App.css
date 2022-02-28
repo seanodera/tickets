@@ -1,6 +1,17 @@
 .App {
   text-align: center;
 }
+main {
+  min-height: 80vh;
+  /* background-color: #262626; */
+}
+
+.container {
+  max-width: 95%;
+}
+.section {
+  display: block;
+}
 
 .App-logo {
   height: 40vmin;
