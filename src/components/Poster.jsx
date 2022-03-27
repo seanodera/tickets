@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import { Card, CardImg, Container } from 'react-bootstrap'
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -14,12 +14,27 @@ const Poster = ({ eventDetails }) => {
         "id" : 1,
         "description" : "short description",
     };
+    const ref = useRef(null);
+   
+    //this is to get the width
+    var [width, setWidth] =useState(ref.current ? ref.current.offsetWidth : 0);
+    useEffect(() => {
+       
+        width = ref.current ? ref.current.offsetWidth : 0;
+        setWidth(ref.current ? ref.current.offsetWidth : 0);
+        console.log('width', width);
+      }, [ref.current]);
+    
   return (
     <LinkContainer to={`/event/${eventDetails.id}`}>
-    <Card style={{width : "16vw"}}>
-        <CardHeader style={{backgroundImage: 'url("/assets/image1.jpg")', height: "16vw"}}> 
-            <Container fluid>
-                <Container style={{backgroundColor : "#FF1744"}}>
+    <Card >
+        <CardHeader ref={ref} style={{backgroundImage: `url("${eventDetails.image}")`,
+        backgroundSize: 'cover',
+        height: `${width}px`,
+         objectFit: 'contain' }}> 
+            <Container>
+                <Container style={{backgroundColor : "#FF1744", display: 'flex',
+            width: `${0.2 * width}px`}} >
                     <h4>28 <br/> FEB 22</h4>
                      </Container>
             </Container>
@@ -29,7 +44,7 @@ const Poster = ({ eventDetails }) => {
             <Card.Text>{eventDetails.description}</Card.Text>
         </Card.Body>
         <Card.Footer>
-            <Card.Text>From 20.00 eur</Card.Text>
+            <Card.Text>From 20.00 eur </Card.Text>
         </Card.Footer>
     </Card>
     </LinkContainer>

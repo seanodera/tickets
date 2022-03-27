@@ -1,19 +1,36 @@
+
 import React from 'react'
-import { Row, Col, ListGroup, ListGroupItem, Container } from 'react-bootstrap';
+import { Row, Col, ListGroup, ListGroupItem, Container, Button, Table } from 'react-bootstrap';
 import { AiOutlineArrowDown, AiTwotoneCalendar } from 'react-icons/ai';
+import {IoLocationOutline} from 'react-icons/io5'
+import { Link } from 'react-router-dom';
 const EventScreen = () => {
     var details = {
-        "image" : "/assets/image1.jpg",
+        "image" : "/assets/image2.jpg",
         "name" : "Event Name",
         "price" : 500,
         "location" : "Hom Club Cy",
         "Date" : "20220228",
         "Time" : 2300,
         "id" : 1,
-        "description" : "short description",
-    };
+        "description" : `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat purus vitae purus fermentum dictum. Nunc bibendum finibus lorem, sed molestie sem cursus sed. Donec commodo sapien in velit condimentum, sit amet interdum ipsum varius. Quisque molestie ligula mi. Pellentesque a mi sed augue sodales aliquam. Suspendisse at urna ante.`,
+    "tickets": [{
+        "id" : 1,
+        "name" : "Vip Table",
+        "price": 50.00,
+        "availability": true,
+    }, {
+        "id" : 2,
+        "name" : "Normal table",
+        "price": 25.00,
+        "availability": false,
+    }]};
+    const handleClick = () => {
+        window.open("http://twitter.com/saigowthamr");
+      };
   return (
-    <>
+    <Container fluid style={{backgroundImage : `URL("${details.image}")`}}>
+        <Container fluid style={{ backgroundColor: "rgba(0,0,0,255)",}}>
     <Row>
         <Col>
         <img src={details.image} alt='poster' style={{width : "60vw", height: "60vw"}}/>
@@ -31,13 +48,50 @@ const EventScreen = () => {
             </ListGroupItem>
             <ListGroupItem>
                 <Container fluid>
-                    <h4> Location details </h4>
+                    <h4> <IoLocationOutline/> Location details </h4>
+                    <div  style={{textAlign: 'center'}}>
+                   <a href='https:www.google.com/maps' target="_blank" rel="noopener noreferrer" > <h5 style={{color:"#FF1744"}} > Markou Drakou 3, Engomi, Nicosia </h5></a> 
+                    </div>
+                </Container>
+            </ListGroupItem>
+            <ListGroupItem>
+                <Container fluid>
+                    <h4> Ticket Options</h4>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <td> Type</td>
+                                <td>Price</td>
+                                <td>Buy</td>
+                            </tr>
+                        </thead>
+                       <tbody>
+                      
+                           {
+                               details.tickets.map((ticket) => (<tr> <td>{ticket.name}</td>
+                               <td>{ticket.price}.00 EUR</td>
+                               <td>
+                               <Button variant={'primary'} style={{backgroundColor: '#FF1744'}} disabled={!ticket.availability}>
+                                   Buy
+                               </Button>
+                                   </td></tr>))
+                           }
+                            
+                       </tbody>
+                    </Table>
+                </Container>
+            </ListGroupItem>
+            <ListGroupItem>
+                <Container fluid>
+                    <h4>Description</h4>
+                    <h5> {details.description}</h5>
                 </Container>
             </ListGroupItem>
         </ListGroup>
         </Col>
     </Row>
-    </>
+    </Container>
+    </Container>
   )
 }
 

@@ -16,7 +16,7 @@ const HomeScreen = () => {
         "id" : 1,
         "description" : "short description",
     }, {
-      "image" : "/assets/image1.jpg",
+      "image" : "/assets/image2.jpg",
       "name" : "Event Name",
       "price" : 500,
       "location" : "Hom Club Cy",
@@ -26,7 +26,7 @@ const HomeScreen = () => {
       "description" : "short description",
   },
   {
-    "image" : "/assets/image1.jpg",
+    "image" : "/assets/image3.jpg",
     "name" : "Event Name",
     "price" : 500,
     "location" : "Hom Club Cy",
@@ -35,7 +35,7 @@ const HomeScreen = () => {
     "id" : 3,
     "description" : "short description",
 },{
-  "image" : "/assets/image1.jpg",
+  "image" : "/assets/image4.jpg",
   "name" : "Event Name",
   "price" : 500,
   "location" : "Hom Club Cy",
@@ -44,7 +44,7 @@ const HomeScreen = () => {
   "id" : 4,
   "description" : "short description",
 },{
-  "image" : "/assets/image1.jpg",
+  "image" : "/assets/image5.jpg",
   "name" : "Event Name",
   "price" : 500,
   "location" : "Hom Club Cy",
@@ -53,7 +53,7 @@ const HomeScreen = () => {
   "id" : 5,
   "description" : "short description",
 } , {
-  "image" : "/assets/image1.jpg",
+  "image" : "/assets/image6.jpg",
   "name" : "Event Name",
   "price" : 500,
   "location" : "Hom Club Cy",
@@ -68,7 +68,7 @@ const HomeScreen = () => {
     <>
     
       <Container fluid style={{ width : "100%",height : "30vw"}} >
-      <img src="/assets/image1.jpg" alt='cover incase' height="100%" width="100%" style={{objectFit : "cover"}}/>
+      <img src="/assets/cover.jpg" alt='cover incase' height="100%" width="100%" style={{objectFit : "cover"}}/>
       </Container>
       <Container fluid className="py-2">
         <Row>
@@ -92,7 +92,7 @@ const HomeScreen = () => {
         <h3>Popular Events</h3>
       </Row>
       <Row>
-        {popular.map((details) => (<Col > <Poster eventDetails={details}/> </Col>))}
+        {popular.map((details) => (<Col className='md-3' md='3' > <Poster eventDetails={details} key={details.id}/> </Col>))}
       </Row>
       </Container>
 
