@@ -1,43 +1,69 @@
 import React from 'react'
-import { Container, Navbar } from 'react-bootstrap'
+import { Container, Form, FormGroup, Nav, Navbar, NavLink } from 'react-bootstrap'
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
+import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { IoPersonCircle } from 'react-icons/io5'
 import { LinkContainer } from 'react-router-bootstrap'
 
+
 const Header = () => {
+
   return (
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <Navbar variant='dark' bg='primary' expand='lg' collapseOnSelect>
     <Container>
     <LinkContainer to='/'>
             <Navbar.Brand>TicketsCY</Navbar.Brand>
           </LinkContainer>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <Container fluid/>
+
+     <Form>
+     <FormGroup className='SearchBar' style={{backgroundColor: 'hsla(0,0%,100%,0.2)'}}>
+        <span style={{paddingTop: '8.5px', paddingBottom: '8.5px', paddingLeft: '14px'}}>
+        <AiOutlineSearch color='#FF1744' size={28} /> </span>
+        <input className='py-3'
+        type="text"
+         maxLength="2048" 
+         name="search" 
+         autoCapitalize="off" 
+         autoComplete="off" 
+         autoCorrect="off"
+          spellCheck="false"
+           title="Search input" 
+           placeholder="Event, artist or team" 
+         style={{
+             height: '44px',
+             minWidth: '200px',
+             width: 'max-content',
+             border: '0',
+             outline: '0',
+             paddingLeft: '14px',
+             color: 'white',
+             backgroundColor: 'transparent'
+           }}/>
+      </FormGroup>
+     </Form>
+
+    
+    <NavbarToggle type='button' aria-controls='basic-navbar-nav' />
+     <NavbarCollapse id='basic-navbar-nav' className='justify-content-end'>
+       <Nav className='ml-auto'>
+         <LinkContainer to={'/sell'}>
+         <NavLink>
+           Sell
+         </NavLink>
+         </LinkContainer>
+         <LinkContainer to={'/login'}>
+           <NavLink>
+           <IoPersonCircle color='#FF1744' style={{display: 'flex'}}/> Sign In
+           </NavLink>
+         </LinkContainer>
+       </Nav>
+     </NavbarCollapse>
   
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-        
-        </ul>
-       
-      </div>
+      
     </Container>
-  </nav></header>
+  </Navbar></header>
   )
 }
 

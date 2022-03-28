@@ -17,6 +17,14 @@ main {
   height: 40vmin;
   pointer-events: none;
 }
+.SearchBar {
+  border-radius: 25px;
+  border: 1px, solid;
+  min-width: 300px;
+  width: 30vw;
+  color: hsla(0,0%,100%,0.2);;
+  background-color: hsla(0,0%,100%,0.2);;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

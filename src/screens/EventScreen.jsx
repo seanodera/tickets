@@ -3,7 +3,6 @@ import React from 'react'
 import { Row, Col, ListGroup, ListGroupItem, Container, Button, Table } from 'react-bootstrap';
 import { AiOutlineArrowDown, AiTwotoneCalendar } from 'react-icons/ai';
 import {IoLocationOutline} from 'react-icons/io5'
-import { Link } from 'react-router-dom';
 const EventScreen = () => {
     var details = {
         "image" : "/assets/image2.jpg",
@@ -25,17 +24,17 @@ const EventScreen = () => {
         "price": 25.00,
         "availability": false,
     }]};
-    const handleClick = () => {
-        window.open("http://twitter.com/saigowthamr");
-      };
+    // const handleClick = () => {
+    //     window.open("http://twitter.com/saigowthamr");
+    //   };
   return (
-    <Container fluid style={{backgroundImage : `URL("${details.image}")`}}>
-        <Container fluid style={{ backgroundColor: "rgba(0,0,0,255)",}}>
+    <Container fluid>
+
     <Row>
         <Col>
         <img src={details.image} alt='poster' style={{width : "60vw", height: "60vw"}}/>
         </Col>
-        <Col>
+        <Col style={{maxHeight: '60vw'}}>
         <ListGroup>
             <ListGroupItem>
                 <Container fluid>
@@ -90,7 +89,6 @@ const EventScreen = () => {
         </ListGroup>
         </Col>
     </Row>
-    </Container>
     </Container>
   )
 }
