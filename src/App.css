@@ -3,6 +3,7 @@
 }
 main {
   min-height: 80vh;
+  background-color: hsla(0,0%,15%,0.5);
   /* background-color: #262626; */
 }
 

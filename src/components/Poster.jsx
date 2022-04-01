@@ -39,6 +39,7 @@ const Poster = ({ eventDetails }) => {
         </Card.Body>
         <Card.Footer>
             <Card.Text>From 20.00 eur </Card.Text>
+            
         </Card.Footer>
     </Card>
     </LinkContainer>

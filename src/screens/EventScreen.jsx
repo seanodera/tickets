@@ -1,8 +1,8 @@
 
-import React from 'react'
-import { Row, Col, ListGroup, ListGroupItem, Container, Button, Table } from 'react-bootstrap';
-import { AiOutlineArrowDown, AiTwotoneCalendar } from 'react-icons/ai';
+import React, { useEffect, useRef, useState } from 'react'
+import { Row, Col, ListGroup, ListGroupItem, Container, Button } from 'react-bootstrap';
 import {IoLocationOutline} from 'react-icons/io5'
+import {MdOutlineDescription} from 'react-icons/md'
 const EventScreen = () => {
     var details = {
         "image" : "/assets/image2.jpg",
@@ -27,67 +27,48 @@ const EventScreen = () => {
     // const handleClick = () => {
     //     window.open("http://twitter.com/saigowthamr");
     //   };
+    const _ref = useRef(null);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    useEffect(() => {
+      // eslint-disable-next-line
+      setWidth(_ref.current ? _ref.current.offsetWidth : 0);
+      setHeight(width/2);
+      console.log('The width is:', width, 'and height is:', height);
+    }, [height, width])
+    
   return (
     <Container fluid>
-
     <Row>
-        <Col>
-        <img src={details.image} alt='poster' style={{width : "60vw", height: "60vw"}}/>
-        </Col>
-        <Col style={{maxHeight: '60vw'}}>
-        <ListGroup>
-            <ListGroupItem>
-                <Container fluid>
-                    <h4><AiTwotoneCalendar/> Schedule</h4>
-                  <div style={{textAlign: 'center'}}> 
-                      <h5 className="my-0">28th February 2022 at 11.30 PM</h5>
-                    <h3 style={{color:"#FF1744"}} className="my-0"><AiOutlineArrowDown/></h3>
-                    <h5 className="my-0">1st March 2022 at 3.00 AM</h5></div>
-                </Container>
-            </ListGroupItem>
-            <ListGroupItem>
-                <Container fluid>
-                    <h4> <IoLocationOutline/> Location details </h4>
-                    <div  style={{textAlign: 'center'}}>
-                   <a href='https:www.google.com/maps' target="_blank" rel="noopener noreferrer" > <h5 style={{color:"#FF1744"}} > Markou Drakou 3, Engomi, Nicosia </h5></a> 
-                    </div>
-                </Container>
-            </ListGroupItem>
-            <ListGroupItem>
-                <Container fluid>
-                    <h4> Ticket Options</h4>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <td> Type</td>
-                                <td>Price</td>
-                                <td>Buy</td>
-                            </tr>
-                        </thead>
-                       <tbody>
-                      
-                           {
-                               details.tickets.map((ticket) => (<tr> <td>{ticket.name}</td>
-                               <td>{ticket.price}.00 EUR</td>
-                               <td>
-                               <Button variant={'primary'} style={{backgroundColor: '#FF1744'}} disabled={!ticket.availability}>
-                                   Buy
-                               </Button>
-                                   </td></tr>))
-                           }
-                            
-                       </tbody>
-                    </Table>
-                </Container>
-            </ListGroupItem>
-            <ListGroupItem>
-                <Container fluid>
-                    <h4>Description</h4>
-                    <h5> {details.description}</h5>
-                </Container>
-            </ListGroupItem>
-        </ListGroup>
-        </Col>
+       <Col>
+       <img src={details.image} alt='poster' style={{
+           width: '50vw',
+           height: '50vw'
+       }}/>
+       </Col>
+       <Col>
+       <ListGroup style={{
+           heigh: '50vw'
+       }}>
+           <ListGroupItem>
+               <h4><MdOutlineDescription/> Description</h4>
+               <p>{details.description}</p>
+           </ListGroupItem>
+           <ListGroupItem>
+               <h4> <IoLocationOutline size={28}/> Location</h4>
+               <Container fluid ref={_ref} className='py-0 px-0 my-0 mx-0'>
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13046.2860819164!2d33.314930399999994!3d35.1673054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de1a65601ddee1%3A0xb417b59ceaab7506!2sUniversity%20of%20Nicosia!5e0!3m2!1sen!2s!4v1648572216520!5m2!1sen!2s" 
+               title='maps' width={`${width - 30}`} height={`${height}`} allowFullScreen='' loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+               </Container>
+           </ListGroupItem>
+           <ListGroupItem>
+               <h4>Pricing</h4>
+               <Button size='lg' variant='primary' style={{
+                   width: `${width}px`
+               }}>Reserve</Button>
+           </ListGroupItem>
+       </ListGroup>
+       </Col>
     </Row>
     </Container>
   )

@@ -1,27 +1,43 @@
-import React from 'react'
-import { Container, Form, FormGroup, Nav, Navbar, NavLink } from 'react-bootstrap'
+import { getAuth } from 'firebase/auth'
+import React, {useState, useEffect} from 'react'
+import { Container, FormGroup, Nav, Navbar, NavLink } from 'react-bootstrap'
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoPersonCircle } from 'react-icons/io5'
 import { LinkContainer } from 'react-router-bootstrap'
+import { getUserDetails } from '../podo/firebaseFunctions'
 
 
 const Header = () => {
-
+  const [loggedIn, setLoggedIn]= useState(false);
+  const [details, setDetails] = useState({});
+  let Auth = getAuth();
+  useEffect(() => {
+   let user = Auth.currentUser;
+   if(user){
+     setLoggedIn(true);
+     getUserDetails(user.uid).then((_dets) => {
+      setDetails(_dets);
+     });
+     
+   } else {
+     setLoggedIn(false);
+   }
+  }, [Auth.currentUser])
+  
   return (
     <header>
-        <Navbar variant='dark' bg='primary' expand='lg' collapseOnSelect>
+        <Navbar variant='dark' bg='dark' expand='lg' collapseOnSelect>
     <Container>
     <LinkContainer to='/'>
             <Navbar.Brand>TicketsCY</Navbar.Brand>
           </LinkContainer>
 
-     <Form>
-     <FormGroup className='SearchBar' style={{backgroundColor: 'hsla(0,0%,100%,0.2)'}}>
+     <FormGroup className='SearchBar px-0 py-0' style={{backgroundColor: 'hsla(0,0%,100%,0.2)'}}>
         <span style={{paddingTop: '8.5px', paddingBottom: '8.5px', paddingLeft: '14px'}}>
         <AiOutlineSearch color='#FF1744' size={28} /> </span>
-        <input className='py-3'
+        <input className='py-0'
         type="text"
          maxLength="2048" 
          name="search" 
@@ -42,7 +58,6 @@ const Header = () => {
              backgroundColor: 'transparent'
            }}/>
       </FormGroup>
-     </Form>
 
     
     <NavbarToggle type='button' aria-controls='basic-navbar-nav' />
@@ -55,7 +70,7 @@ const Header = () => {
          </LinkContainer>
          <LinkContainer to={'/login'}>
            <NavLink>
-           <IoPersonCircle color='#FF1744' style={{display: 'flex'}}/> Sign In
+           <IoPersonCircle color='#FF1744' style={{display: 'flex'}}/> {loggedIn ? (`${details.firstName} ${details.lastName}`) : ('Sign in')}
            </NavLink>
          </LinkContainer>
        </Nav>

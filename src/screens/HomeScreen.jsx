@@ -1,77 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import {AiTwotoneCalendar} from 'react-icons/ai'
 import Poster from '../components/Poster';
+import { getEvents } from '../podo/firebaseFunctions';
+
 
 const HomeScreen = () => {
-  var popular = 
-    [
-      {
-        "image" : "/assets/image1.jpg",
-        "name" : "Event Name",
-        "price" : 500,
-        "location" : "Hom Club Cy",
-        "Date" : "20220228",
-        "Time" : 2300,
-        "id" : 1,
-        "description" : "short description",
-    }, {
-      "image" : "/assets/image2.jpg",
-      "name" : "Event Name",
-      "price" : 500,
-      "location" : "Hom Club Cy",
-      "Date" : "20220228",
-      "Time" : 2300,
-      "id" : 2,
-      "description" : "short description",
-  },
-  {
-    "image" : "/assets/image3.jpg",
-    "name" : "Event Name",
-    "price" : 500,
-    "location" : "Hom Club Cy",
-    "Date" : "20220228",
-    "Time" : 2300,
-    "id" : 3,
-    "description" : "short description",
-},{
-  "image" : "/assets/image4.jpg",
-  "name" : "Event Name",
-  "price" : 500,
-  "location" : "Hom Club Cy",
-  "Date" : "20220228",
-  "Time" : 2300,
-  "id" : 4,
-  "description" : "short description",
-},{
-  "image" : "/assets/image5.jpg",
-  "name" : "Event Name",
-  "price" : 500,
-  "location" : "Hom Club Cy",
-  "Date" : "20220228",
-  "Time" : 2300,
-  "id" : 5,
-  "description" : "short description",
-} , {
-  "image" : "/assets/image6.jpg",
-  "name" : "Event Name",
-  "price" : 500,
-  "location" : "Hom Club Cy",
-  "Date" : "20220228",
-  "Time" : 2300,
-  "id" : 6,
-  "description" : "short description",
-}]
-  ;
-
+  const [popular, setPopular] = useState([]);
+  useEffect(() => {
+    getEvents().then((list) => {
+      setPopular(list);
+    })
+  }, [])
+ 
   
   return (
     <>
     
-      <Container fluid style={{ width : "100%",height : "30vw"}} >
+      <Container fluid style={{ width : "100%",height : "30vw", backgroundColor: 'hsla(0,0%,100%,0.2)',}} className='px-0' >
       <img src="/assets/cover2.webp" alt='cover incase' height="100%" width="100%" style={{objectFit : "cover"}}/>
       </Container>
-      <Container fluid className="py-2">
+      <Container fluid className="py-2" style={{
+        backgroundColor: 'hsla(0,0%,100%,0.2)',
+        width: '100%'
+      }}>
         <Row>
         <Col>
         <h5 style={{color : "#FF1744"}} className="m-0">MassHouse Presents :</h5>
@@ -103,7 +55,7 @@ const HomeScreen = () => {
       <h3>Upcoming Events </h3>
       </Col>
          <Col  style={{display: 'contents',alignContent: 'end'}}>
-         <Button className='px-2 mx-3 my-2' variant='outline-primary' size='sm' style={{
+         <Button className='px-2 mx-3 my-3' variant='outline-primary' size='sm' style={{
             borderRadius: '25',
           }}> View All Upcoming</Button>
          </Col>     
