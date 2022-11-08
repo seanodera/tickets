@@ -1,0 +1,48 @@
+[
+    
+        {
+            "image" : "/assets/image2.jpg",
+            "name" : "Event Name",
+            "price" : 500,
+            "location" : "Hom Club Cy",
+            "Date" : "20220228",
+            "Time" : 2300,
+            "id" : 1,
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat purus vitae purus fermentum dictum. Nunc bibendum finibus lorem, sed molestie sem cursus sed. Donec commodo sapien in velit condimentum, sit amet interdum ipsum varius. Quisque molestie ligula mi. Pellentesque a mi sed augue sodales aliquam. Suspendisse at urna ante.",
+             "options": [{
+            "id" : 1,
+            "name" : "Vip Table",
+            "price": 50.00,
+            "available": 200,
+            "sold": 100
+        }, {
+            "id" : 2,
+            "name" : "Normal table",
+            "price": 25.00,
+            "available": 200,
+            "sold": 100
+        }]},
+        {
+            "image" : "/assets/image2.jpg",
+            "name" : "Event Name",
+            "price" : 500,
+            "location" : "Hom Club Cy",
+            "Date" : "20220228",
+            "Time" : 2300,
+            "id" : 1,
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat purus vitae purus fermentum dictum. Nunc bibendum finibus lorem, sed molestie sem cursus sed. Donec commodo sapien in velit condimentum, sit amet interdum ipsum varius. Quisque molestie ligula mi. Pellentesque a mi sed augue sodales aliquam. Suspendisse at urna ante.",
+             "options": [{
+            "id" : 1,
+            "name" : "Vip Table",
+            "price": 50.00,
+            "available": 200,
+            "sold": 100
+        }, {
+            "id" : 2,
+            "name" : "Normal table",
+            "price": 25.00,
+            "available": 200,
+            "sold": 100
+        }]}
+    
+]

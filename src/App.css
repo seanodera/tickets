@@ -7,25 +7,7 @@ main {
   /* background-color: #262626; */
 }
 
-.container {
-  max-width: 95%;
-}
-.section {
-  display: block;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-.SearchBar {
-  border-radius: 25px;
-  border: 1px, solid;
-  min-width: 300px;
-  width: 30vw;
-  color: hsla(0,0%,100%,0.2);;
-  background-color: hsla(0,0%,100%,0.2);;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -47,6 +29,21 @@ main {
 .App-link {
   color: #61dafb;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
 
 @keyframes App-logo-spin {
   from {

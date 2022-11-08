@@ -28,14 +28,14 @@ const Header = () => {
   
   return (
     <header>
-        <Navbar variant='dark' bg='dark' expand='lg' collapseOnSelect>
+        <Navbar className='' variant='dark' bg='dark' expand='lg' collapseOnSelect sticky={'top'}>
     <Container>
     <LinkContainer to='/'>
             <Navbar.Brand>TicketsCY</Navbar.Brand>
           </LinkContainer>
 
-     <FormGroup className='SearchBar px-0 py-0' style={{backgroundColor: 'hsla(0,0%,100%,0.2)'}}>
-        <span style={{paddingTop: '8.5px', paddingBottom: '8.5px', paddingLeft: '14px'}}>
+     <FormGroup className='searchBar ps-1 py-0' >
+        <span >
         <AiOutlineSearch color='#FF1744' size={28} /> </span>
         <input className='py-0'
         type="text"
@@ -48,8 +48,8 @@ const Header = () => {
            title="Search input" 
            placeholder="Event, artist or team" 
          style={{
-             height: '44px',
-             minWidth: '200px',
+           height: '40px',
+             minWidth: '120px',
              width: 'max-content',
              border: '0',
              outline: '0',
@@ -69,8 +69,8 @@ const Header = () => {
          </NavLink>
          </LinkContainer>
          <LinkContainer to={'/login'}>
-           <NavLink>
-           <IoPersonCircle color='#FF1744' style={{display: 'flex'}}/> {loggedIn ? (`${details.firstName} ${details.lastName}`) : ('Sign in')}
+           <NavLink style={{display: 'inline-flex'}}>
+           <IoPersonCircle color='#FF1744' /> {loggedIn ? (`${details.firstName} ${details.lastName}`) : ('Sign in')}
            </NavLink>
          </LinkContainer>
        </Nav>

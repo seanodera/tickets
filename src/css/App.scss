@@ -1,0 +1,86 @@
+
+@import "variables.scss";
+/* change the colors */
+$secondary: #FF1744;
+$border-color: #262626;
+
+$dark: #211515;
+$primary: $white;
+//$danger: #dd0000;
+//$success: lime;
+//$warning: orange;
+//$info: aqua;
+
+$body-bg: #262626;
+.common-bg{
+    background-color: #211515;
+}
+.img{
+    object-fit: cover;
+}
+.customCenter {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column
+};
+
+.verticalCenter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.colorTheme-bg{
+    background-color: $secondary;
+}
+
+.colorTheme {
+color: $secondary;
+}
+.limitLines{
+    display: -webkit-box;
+    max-lines: 3 ;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.p{
+    display: inline;
+}
+.colorTrans{
+    background-color: rgba(33,21,21,0.9);
+}
+.colorThemeTrans{
+    background-color: rgba(255, 23, 68,0.95);
+}
+.fillSpace {
+    width: 100%;
+    height: 100%;
+}
+.fixPad {
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    padding-right: 0 !important;
+}
+.footerBorder{
+    border-right: #262626;
+}
+
+.searchBar{
+    background-color: hsla(0,0%,100%,0.2);
+    border-radius: 8px;
+}
+.glassEffect {
+    background-image: linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+.glassEffect-Dark{
+    background-image: linear-gradient(125deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2) 70%);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+@import '~bootstrap/scss/bootstrap.scss';
+@import "_bootswatch.scss";
+
