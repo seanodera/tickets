@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Container, Row, Col, Form } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Button, Container} from 'react-bootstrap'
 
 const EmailConfirmation = () => {
   return (

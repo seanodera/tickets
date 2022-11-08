@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const VenueScreen = () => {
     let {id} = useParams();
+    console.log(id);
   return (
     <Container>
         <Container fluid style={{backgroundColor: '#262626'}}>

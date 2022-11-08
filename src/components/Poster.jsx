@@ -1,5 +1,5 @@
-import React, {useRef, useEffect, useState} from 'react'
-import {Card, Col, Container, Row} from 'react-bootstrap'
+import React from 'react'
+import {Card, Col, Row} from 'react-bootstrap'
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import {LinkContainer} from 'react-router-bootstrap';
 import {faker} from "@faker-js/faker";
@@ -9,20 +9,10 @@ import {BiTime} from "react-icons/bi";
 
 const Poster = ({eventDetails}) => {
 
-    const ref = useRef(null);
-
-    //this is to get the width
-    var [width, setWidth] = useState(0);
-    useEffect(() => {
-        // eslint-disable-next-line
-        width = ref.current ? ref.current.offsetWidth : 0;
-        setWidth(ref.current ? ref.current.offsetWidth : 0);
-        console.log('width', width);
-    }, [ref.current]);
 
     return (<LinkContainer to={`/event/${eventDetails.id}`}>
         <Card className={'glassEffect'}>
-            <CardHeader ref={ref} className='py-0 px-0' style={{
+            <CardHeader className='py-0 px-0' style={{
                 backgroundImage: `url("${eventDetails.image}")`,
                 backgroundSize: 'cover',
                 width: '100%',

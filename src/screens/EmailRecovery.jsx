@@ -8,14 +8,14 @@ const EmailRecovery = ({oob}) => {
     useEffect(() =>{
         recoverEmail(oob).then((code) => {
             setRestoredEmail(code.data.email);
-
-
-            setFirstRun(true);
-            sendPassReset(restoredEmail).catch((e) => {
-                console.log(e);
-            });
+            if (!firstRun){
+                setFirstRun(true);
+                sendPassReset(restoredEmail).catch((e) => {
+                    console.log(e);
+                });
+            }
         });
-    }, [])
+    }, [firstRun, oob, restoredEmail])
     return (<div
     style={{
         width: '100vw',

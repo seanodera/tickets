@@ -2,52 +2,57 @@ import React from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {IoLocationOutline} from "react-icons/io5";
 import {AiOutlineCalendar} from "react-icons/ai";
-import {faker} from "@faker-js/faker";
 import {BiBookBookmark} from "react-icons/bi";
 import {BsCurrencyEuro} from "react-icons/bs";
+import {LinkContainer} from "react-router-bootstrap";
+import {getAbbreviation, monthStringShort} from "../podo/utils";
 
 
-const HomeAd = () => {
+const HomeAd = ({advert}) => {
+
+    let date = new Date(advert.date);
 
     return (<div style={{
-        backgroundImage: 'url("/assets/cover3.jpg")', backgroundSize: 'cover',
+        backgroundImage: `url("${advert.image}")`, backgroundSize: 'cover', backgroundPosition: 'center'
     }}>
         <Container fluid
                    style={{
-                       width: "100%",
+                       width: "100%", minHeight: '40vh',
                        aspectRatio: '2.5',
-                       backdropFilter: 'blur(5px)',
-                       WebkitBackdropFilter: 'blur(5px)',
+                       backdropFilter: 'blur(0px)',
+                       WebkitBackdropFilter: 'blur(0px)',
                    }}
                    className=' px-3'>
             <Row className={'ms-5 fillSpace'}>
                 <Col className={'verticalCenter'} md={'4'}>
                     <div className={''}>
-                        <h2>Masshouse presents: Heavy K The DrumBoss</h2>
-                        <Row className={'mb-1'}>
-                            <Col>
+                        <h2>{advert.title}</h2>
+                        <Row className={'mb-1'} md={'auto'}>
+                            <Col md={'auto'}>
                            <span>
-                               <IoLocationOutline/> Nicosia
+                               <IoLocationOutline/> {advert.location}
                            </span>
                             </Col>
-                            <Col>
+                            <Col md={'auto'}>
                            <span>
-                               <AiOutlineCalendar/> Nov, 27th
+                               <AiOutlineCalendar/> {monthStringShort(date.getMonth())}, {getAbbreviation(date.getDay())}
                            </span>
                             </Col>
-                            <Col>
+                            <Col md={'auto'}>
                           <span>
-                               <BsCurrencyEuro/> 20.00
+                               <BsCurrencyEuro/> {advert.price}
                           </span>
                             </Col>
                         </Row>
-                        <p>
-                            {faker.lorem.lines(3)}
+                        <p className={'limitLines'}>
+                            {advert.description}
                         </p>
                         <span>
-                       <Button variant={'secondary'}>
+                      <LinkContainer to={'/' + advert.id}>
+                           <Button variant={'secondary'}>
                            Visit event
                        </Button>
+                      </LinkContainer>
                        <Button className={'mx-3'} variant={'outline-secondary'}>
                            <BiBookBookmark size={22}/>
                        </Button>

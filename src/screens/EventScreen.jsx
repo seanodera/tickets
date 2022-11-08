@@ -55,7 +55,7 @@ const EventScreen = () => {
                     </ListGroupItem>
                     <ListGroupItem>
                         <h4>Pricing</h4>
-                        <Button size='lg' variant='primary' style={{
+                        <Button size='lg' variant='primary' onClick={handleReserve.bind(this)} style={{
 
                         }}>Reserve</Button>
                     </ListGroupItem>

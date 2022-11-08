@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Button, Container, Form, FormControl, FormGroup, FormLabel, FormText} from 'react-bootstrap'
-import {sendPassReset, sendVerificationCode} from "../podo/firebaseFunctions";
+import {sendPassReset} from "../podo/firebaseFunctions";
 
 const ForgotPassword = () => {
     const [errorObject,setErrorObject] = useState({})

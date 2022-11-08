@@ -25,19 +25,16 @@ function App() {
 
 const Routed = () => {
     let location = useLocation();
-    const [styleMain, setStyleMain] = useState({});
-    const [mainClassName, setMainClassName] = useState('');
+
     const [hide, setHide] = useState(false);
     useEffect(() => {
         if (location.pathname === '/login' || location.pathname === '/confirm' || location.pathname === '/forgotpassword') {
             setHide(true);
-            setStyleMain({height: '100vh', backgroundColor: '#262626'})
-            setMainClassName('py-0');
+
         } else {
 
             setHide(false);
-            setStyleMain({height: '85%'});
-            setMainClassName('py-3')
+
         }
     }, [location.pathname])
 

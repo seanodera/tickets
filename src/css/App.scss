@@ -4,7 +4,9 @@
 $secondary: #FF1744;
 $border-color: #262626;
 
-$dark: #211515;
+//$dark: #171515;
+//$dark: #211515;
+$dark: #181515;
 $primary: $white;
 //$danger: #dd0000;
 //$success: lime;
@@ -13,7 +15,7 @@ $primary: $white;
 
 $body-bg: #262626;
 .common-bg{
-    background-color: #211515;
+    background-color: #181515;
 }
 .img{
     object-fit: cover;
@@ -40,10 +42,10 @@ color: $secondary;
 }
 .limitLines{
     display: -webkit-box;
-    max-lines: 3 ;
+    max-lines: 4 ;
     -webkit-box-orient: vertical;
-    line-clamp: 3;
-    -webkit-line-clamp: 3;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
     overflow: hidden;
 }
 .p{
