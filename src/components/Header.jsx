@@ -1,34 +1,37 @@
-import { getAuth } from 'firebase/auth'
 import React, {useState, useEffect} from 'react'
-import { Container, FormGroup, Nav, Navbar, NavLink } from 'react-bootstrap'
+import {Button, Container, FormGroup, Nav, Navbar, NavLink} from 'react-bootstrap'
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
-import { AiOutlineSearch } from 'react-icons/ai'
+import {AiOutlineSearch} from 'react-icons/ai'
 import { IoPersonCircle } from 'react-icons/io5'
 import { LinkContainer } from 'react-router-bootstrap'
-import { getUserDetails } from '../podo/firebaseFunctions'
+import {getUser, getUserDetails} from '../podo/firebaseFunctions'
+import {getAuth} from "firebase/auth";
 
 
 const Header = () => {
   const [loggedIn, setLoggedIn]= useState(false);
   const [details, setDetails] = useState({});
-  let Auth = getAuth();
+  const [user, setUser] = useState(getUser());
+
   useEffect(() => {
-   let user = Auth.currentUser;
+      setUser(getUser())
+   console.log(user);
    if(user){
      setLoggedIn(true);
-     getUserDetails(user.uid).then((_dets) => {
-      setDetails(_dets);
+     getUserDetails(user.uid).then((det) => {
+      setDetails(det);
      });
      
    } else {
+       setUser(getUser());
      setLoggedIn(false);
    }
-  }, [Auth.currentUser])
+  }, [user, getAuth()])
   
   return (
     <header>
-        <Navbar className='' variant='dark' bg='dark' expand='lg' collapseOnSelect sticky={'top'}>
+        <Navbar variant='dark' bg='dark' expand='lg' collapseOnSelect >
     <Container>
     <LinkContainer to='/'>
             <Navbar.Brand>TicketsCY</Navbar.Brand>
@@ -39,7 +42,7 @@ const Header = () => {
         <AiOutlineSearch color='#FF1744' size={28} /> </span>
         <input className='py-0'
         type="text"
-         maxLength="2048" 
+         maxLength="2048"
          name="search" 
          autoCapitalize="off" 
          autoComplete="off" 
@@ -49,7 +52,7 @@ const Header = () => {
            placeholder="Event, artist or team" 
          style={{
            height: '40px',
-             minWidth: '120px',
+             minWidth: '200px',
              width: 'max-content',
              border: '0',
              outline: '0',
@@ -63,16 +66,16 @@ const Header = () => {
     <NavbarToggle type='button' aria-controls='basic-navbar-nav' />
      <NavbarCollapse id='basic-navbar-nav' className='justify-content-end'>
        <Nav className='ml-auto'>
-         <LinkContainer to={'/sell'}>
-         <NavLink>
-           Sell
-         </NavLink>
-         </LinkContainer>
-         <LinkContainer to={'/login'}>
+
+         <LinkContainer to={loggedIn?   '/profile' : '/login'}>
            <NavLink style={{display: 'inline-flex'}}>
            <IoPersonCircle color='#FF1744' /> {loggedIn ? (`${details.firstName} ${details.lastName}`) : ('Sign in')}
            </NavLink>
          </LinkContainer>
+           <LinkContainer to={'/sell'}>
+              <Button variant={'primary'} size={'sm'}>Become A seller</Button>
+           </LinkContainer>
+
        </Nav>
      </NavbarCollapse>
   

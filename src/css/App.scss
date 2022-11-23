@@ -1,5 +1,7 @@
 
-@import "variables.scss";
+
+@import "quartz";
+@import "lux";
 /* change the colors */
 $secondary: #FF1744;
 $border-color: #262626;
@@ -13,9 +15,9 @@ $primary: $white;
 //$warning: orange;
 //$info: aqua;
 
-$body-bg: #262626;
+$body-bg: #211515;
 .common-bg{
-    background-color: #181515;
+    background-color: #211515;
 }
 .img{
     object-fit: cover;
@@ -61,6 +63,13 @@ color: $secondary;
     width: 100%;
     height: 100%;
 }
+main {
+    min-height: 80vh;
+    //background-color: hsla(0,0%,15%,0.5);
+    background: linear-gradient(180deg,$dark,$body-bg);
+    /* background-color: #262626; */
+}
+
 .fixPad {
     padding-left: calc(var(--bs-gutter-x) * .5);
     padding-right: 0 !important;
@@ -83,6 +92,51 @@ color: $secondary;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.loader-container {
+    width: 100%;
+    height: 80vh;
+
+    align-items: center;
+    -webkit-align-items: center;
+    top: 40vh;
+    left: 50%;
+    background: linear-gradient(180deg,$dark,$body-bg);
+
+}
+.spinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid;
+    align-self: center;
+    -webkit-align-self: center;
+    border-color: $secondary transparent $primary transparent;
+    border-radius: 50%;
+    animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
 @import "_bootswatch.scss";
 

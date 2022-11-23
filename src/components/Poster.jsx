@@ -6,10 +6,11 @@ import {faker} from "@faker-js/faker";
 import {IoLocationOutline} from "react-icons/io5";
 import {BsCurrencyEuro} from "react-icons/bs";
 import {BiTime} from "react-icons/bi";
+import {monthStringShort} from "../podo/utils";
 
 const Poster = ({eventDetails}) => {
-
-
+    let date = new Date(0);
+    date.setUTCSeconds(eventDetails.Date.seconds, eventDetails.Date.nanoseconds);
     return (<LinkContainer to={`/event/${eventDetails.id}`}>
         <Card className={'glassEffect'}>
             <CardHeader className='py-0 px-0' style={{
@@ -22,15 +23,19 @@ const Poster = ({eventDetails}) => {
                 <div className={'d-flex flex-row flex-fill justify-content-end'}>
                     <div className={'text-white text-center bg-secondary px-1 pt-1 mx-1 my-1  rounded-1'}
                          style={{}}>
-                        <p>28 <br/> FEB <br/> 22</p>
+                        <p>{date.getDay()} <br/> {monthStringShort(date.getMonth())} <br/> {date.getFullYear()}</p>
                     </div>
                 </div>
             </CardHeader>
-            <Card.Body className={'px-1'}>
+            <Card.Body className={'px-1 pb-1'} style={{
+                height: '180px',
+            }}>
                 <Card.Title>{eventDetails.name}</Card.Title>
-                <Card.Text style={{
-                    height: '100px', overflow: 'hidden', textOverflow: 'ellipsis'
-                }}>{faker.lorem.paragraph(6)}</Card.Text>
+                <div className={'fillSpace'}>
+                    <Card.Text style={{
+                        height: '100px', overflow: 'hidden', textOverflow: 'ellipsis'
+                    }}>{faker.lorem.paragraph(6)}</Card.Text>
+                </div>
             </Card.Body>
             <Card.Footer className={'px-0 mx-0'}>
                 <Row className={'text-center'}>
@@ -40,12 +45,15 @@ const Poster = ({eventDetails}) => {
                     </Col>
                     <Col md={'4'}>
                         <span>
-                            <Card.Text><BiTime/><br/>23:00</Card.Text>
+                            <Card.Text><BiTime/><br/>{date.getHours()}:{date.getMinutes()}</Card.Text>
                         </span>
                     </Col>
                     <Col md={'4'} className={'verticalCenter'}>
                             <span>
-                                <Card.Text><BsCurrencyEuro/>{faker.commerce.price(0, 99)}</Card.Text>
+                                <Card.Text>{(eventDetails.options[0].price === 0) ? 'Free' : (<span>
+                                    <BsCurrencyEuro/> {eventDetails.options[0].price}
+                                </span>)}
+                                    </Card.Text>
                             </span>
                     </Col>
                 </Row>

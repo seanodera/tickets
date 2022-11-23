@@ -12,6 +12,8 @@ import EmailConfirmation from './screens/EmailConfirmation';
 import ForgotPassword from './screens/ForgotPassword';
 import VenueScreen from './screens/VenueScreen';
 import ActionUrlHandler from "./screens/ActionUrlHandler";
+import SellerScreen from "./screens/SellerScreen";
+import Profile from "./screens/Profile";
 
 function App() {
 
@@ -47,6 +49,9 @@ const Routed = () => {
                     <Route path='/confirm' element={<EmailConfirmation/>}/>
                     <Route path='/login' element={<Login/>} exact/>
                     <Route path='/' element={<HomeScreen/>} exact/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/sell'} element={<SellerScreen/>} exact/>
+
                     <Route path='/event/:id' element={<EventScreen/>}/>
                     <Route path='/forgotPassword' element={<ForgotPassword/>}/>
                     <Route path='/venue/:id' element={<VenueScreen/>}/>

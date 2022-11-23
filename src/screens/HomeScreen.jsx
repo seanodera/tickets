@@ -7,22 +7,68 @@ import HomeAd from "../components/HomeAd";
 
 const HomeScreen = () => {
     const [popular, setPopular] = useState([]);
+    const [upcoming, setUpcoming] = useState([]);
     const [ads, setADS] = useState([]);
     useEffect(() => {
         getEvents().then((list) => {
-            setPopular(list);
+
+            let index = Math.random() * (list.length + 1)
+
+            let tempList1 = list.sort((a, b) => {
+                let date1 = new Date(0);
+                date1.setUTCSeconds(a.Date.seconds,a.Date.nanoseconds);
+
+                let date2 = new Date(0);
+                date2.setUTCSeconds(b.Date.seconds,b.Date.nanoseconds);
+                return date1.getUTCSeconds() - date2.getUTCSeconds();
+            }).slice(0, 4);
+            setUpcoming(tempList1);
+            setPopular(list.splice(index, 4));
         });
         setADS(getAdverts);
     }, [])
 
 
     return (<>
+
         <Carousel>
             {ads.map((_advert, index) => (
                 <CarouselItem key={index}>
-                    <HomeAd advert={_advert} />
+                    <HomeAd advert={_advert}/>
                 </CarouselItem>))}
         </Carousel>
+        <Container fluid>
+            <Row className={'bg-dark py-2'}>
+                <Col>
+                    <div className='py-3 customCenter colorThemeTrans' style={{
+                        height: '100%',
+                    }}>
+                        <h5>Email Delivery</h5>
+                        <p className={'text-black'}>immediate online delivery</p>
+                    </div>
+                </Col>
+                <Col>
+                    <div className='py-3 customCenter' style={{
+                        height: '100%',
+                        backgroundColor: 'rgba(38, 38, 38, 0.6)'
+                    }}>
+                        <h5 className={'text-white'}>Refundable </h5>
+
+                        <p className={'text-white'}>Purchases made here are refundable</p>
+                    </div>
+                </Col>
+                <Col>
+                    <div className='py-3 customCenter' style={{
+                        height: '100%',
+                        WebkitBackdropFilter: 'contrast(20%)',
+                        backdropFilter: 'contrast(20%)',
+                    }}>
+                        <h5 className={'text-white'}>Simple</h5>
+                        <p className={'text-white'}>Qr code for entry</p>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
         <Container>
             <Row className={'mt-3 mb-2 py-1 pe-2 ps-0'}>
                 <Col md={'3'}>
@@ -34,11 +80,11 @@ const HomeScreen = () => {
             </Row>
             <Row className='gx-3 gy-3'>
 
-                {popular.map((details) => (<Col md='3'> <Poster eventDetails={details} key={details.id}/> </Col>))}
+                {popular.map((details) => (<Col key={details.id} md='3'> <Poster eventDetails={details} /> </Col>))}
             </Row>
         </Container>
 
-        <Container className='my-3'>
+        <Container className='mt-3 pb-3'>
             <Row className={'mt-3 mb-2 py-1 pe-0 ps-0'}>
                 <Col md={'auto'}>
                     <h3 className={'text-white text-start'}>Upcoming Events</h3>
@@ -50,8 +96,9 @@ const HomeScreen = () => {
             </Row>
 
             <Row className='gx-3 gy-3'>
-                {popular.map((details) => (<Col md='3'> <Poster eventDetails={details} key={details.id}/>
-                </Col>))}
+                {upcoming.map((details) => (
+                    <Col key={details.id} md='3'> <Poster className={'fillSpace'} eventDetails={details} />
+                    </Col>))}
             </Row>
         </Container>
     </>)

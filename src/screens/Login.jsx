@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Alert, Button, Col, Container, Form, FormControl, FormGroup, FormLabel, FormText, Row} from 'react-bootstrap'
 import {IoChevronBack} from 'react-icons/io5'
 import {LinkContainer} from 'react-router-bootstrap'
-import {createUser, signIn} from '../podo/firebaseFunctions'
+import {createUser, getUser, signIn} from '../podo/firebaseFunctions'
 import {Link, useNavigate} from 'react-router-dom'
 import {AiOutlineFacebook, AiOutlineGoogle} from "react-icons/ai";
 
@@ -15,6 +15,9 @@ const Login = () => {
     const [pass, setpass] = useState('');
     let history = useNavigate();
 
+    if (getUser() !== null){
+        history('/profile');
+    }
     function changePage() {
         setSecond(true);
         setEmail(document.getElementById('Email1').value);
@@ -95,7 +98,7 @@ const Login = () => {
                                     <FormText muted>Phone Number</FormText>
                                 </FormGroup>
                                 <FormGroup className='pt-3'>
-                                    <Button size='lg' variant={'secondary'} style={{width: '100%'}}
+                                    <Button variant={'secondary'} style={{width: '100%'}}
                                             onClick={handleSignUp.bind(this)}>Create an Account</Button>
                                 </FormGroup>
 
@@ -133,11 +136,11 @@ const Login = () => {
                                 <FormGroup>
                                     <Row className='mt-3 gx-1'>
                                         <Col>
-                                            <Button size='lg' variant='secondary' style={{width: '100%'}}
+                                            <Button  variant='secondary' style={{width: '100%'}}
                                                     onClick={handleSignIn.bind(this)}>Login</Button>
                                         </Col>
                                         <Col>
-                                            <Button size='lg' variant='outline-secondary' style={{width: '100%'}}
+                                            <Button  variant='outline-secondary' style={{width: '100%'}}
                                                     onClick={changePage.bind(this)}>Sign Up</Button>
                                         </Col>
                                     </Row>
@@ -152,9 +155,9 @@ const Login = () => {
                                 <hr/>
                             </p>
                             <FormGroup>
-                                <Button size='lg' variant='outline-secondary' style={{width: '100%'}}>
+                                <Button  variant='outline-secondary' style={{width: '100%'}}>
                                     <AiOutlineGoogle/> Google</Button>
-                                <Button size='lg' className='my-1' variant='outline-secondary' style={{width: '100%'}}>
+                                <Button  className='my-1' variant='outline-secondary' style={{width: '100%'}}>
                                     <AiOutlineFacebook/> Facebook</Button>
                             </FormGroup>
 

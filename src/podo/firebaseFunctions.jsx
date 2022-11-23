@@ -6,7 +6,8 @@ import {
     getAuth,
     sendEmailVerification,
     sendPasswordResetEmail,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut
 } from "firebase/auth";
 import {addDoc, collection, doc, getDoc, getDocs, getFirestore, setDoc, updateDoc} from 'firebase/firestore/lite';
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
@@ -32,6 +33,7 @@ const auth = getAuth(app);
 //get Events
 async function getEvents() {
     const snapshot = await getDocs(collection(db, 'events'))
+
     return snapshot.docs.map(doc => doc.data());
 }
 
@@ -46,6 +48,8 @@ async function addEvent(details) {
             "Date": details.Date,
             "Time": details.Time,
             "description": details.description,
+            "options": details.options,
+
         })
         let newUrl = await addImage(details.image, docRef.id);
         const theDoc = doc(db, 'events', docRef.id);
@@ -54,6 +58,30 @@ async function addEvent(details) {
             'image': newUrl,
         })
         console.log("Document written with ID: ", _docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
+
+async function updateEvent(details, id) {
+    try {
+        await updateDoc(doc(db, 'events', id), {
+            "name": details.name,
+            "price": details.price,
+            "location": details.location,
+            "Date": details.Date,
+            "Time": details.Time,
+            "description": details.description,
+            "options": details.options,
+
+        });
+        let newUrl = await addImage(details.image, id);
+        const theDoc = doc(db, 'events', id);
+        await updateDoc(theDoc, {
+            'id': id,
+            'image': newUrl,
+        });
+        console.log("Document written with ID: ", id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
@@ -122,12 +150,8 @@ async function getUserDetails(id) {
 
 async function getEventDetails(id) {
     const snapShot = await getDoc(doc(db, 'events', id));
-    const _options = await getDocs(collection(db, 'events', id, 'options'))
-    const options = _options.docs.map(doc => doc.data());
-    return {
-        ...snapShot.data(),
-        'options': options,
-    };
+
+    return snapShot.data();
 }
 
 async function sendPassReset(email) {
@@ -161,7 +185,6 @@ async function checkOOB(oob) {
     });
 }
 
-
 async function makeReservation(id, count, optionId) {
     try {
         let docRef = await addDoc(collection(db, 'events', id, 'reservations'), {
@@ -179,7 +202,7 @@ async function makeReservation(id, count, optionId) {
     }
 }
 
- const getAdverts = () => {
+const getAdverts = () => {
     // {
     //   id: i.toString(),
     //       image: faker.image.nightlife(),
@@ -207,9 +230,24 @@ async function makeReservation(id, count, optionId) {
     return list
 }
 
+function getUser() {
+    console.log('user gotten')
+    return auth.currentUser;
+}
+
+ function logOut() {
+    let success = false;
+    signOut(auth).then(() => {
+        success = true;
+    }).catch(() => {
+        success = false;
+    });
+    return success;
+}
+
 
 export {
     getEvents, addEvent, addImage, createUser, getPopular, signIn,
     getUserDetails, getEventDetails, sendPassReset, sendVerificationCode,
-    recoverEmail, makeReservation, getAdverts
+    recoverEmail, makeReservation, getAdverts, updateEvent, getUser, logOut
 }

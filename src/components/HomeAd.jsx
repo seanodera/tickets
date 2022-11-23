@@ -8,6 +8,7 @@ import {LinkContainer} from "react-router-bootstrap";
 import {getAbbreviation, monthStringShort} from "../podo/utils";
 
 
+
 const HomeAd = ({advert}) => {
 
     let date = new Date(advert.date);
@@ -25,8 +26,8 @@ const HomeAd = ({advert}) => {
                    className=' px-3'>
             <Row className={'ms-5 fillSpace'}>
                 <Col className={'verticalCenter'} md={'4'}>
-                    <div className={''}>
-                        <h2>{advert.title}</h2>
+                    <div className={'text-white'}>
+                        <h2 className={'text-white'}>{advert.title}</h2>
                         <Row className={'mb-1'} md={'auto'}>
                             <Col md={'auto'}>
                            <span>
