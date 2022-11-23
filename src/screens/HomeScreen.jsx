@@ -13,17 +13,25 @@ const HomeScreen = () => {
         getEvents().then((list) => {
 
             let index = Math.random() * (list.length + 1)
-
+            let fullList = list;
             let tempList1 = list.sort((a, b) => {
                 let date1 = new Date(0);
                 date1.setUTCSeconds(a.Date.seconds,a.Date.nanoseconds);
 
                 let date2 = new Date(0);
                 date2.setUTCSeconds(b.Date.seconds,b.Date.nanoseconds);
-                return date1.getUTCSeconds() - date2.getUTCSeconds();
-            }).slice(0, 4);
-            setUpcoming(tempList1);
-            setPopular(list.splice(index, 4));
+                return  (date1.getUTCDate() - date2.getUTCDate());
+            });
+            let tempList2 = tempList1.sort((a,b) => {
+                let date1 = new Date(0);
+                date1.setUTCSeconds(a.Date.seconds,a.Date.nanoseconds);
+
+                let date2 = new Date(0);
+                date2.setUTCSeconds(b.Date.seconds,b.Date.nanoseconds);
+                return  (date1.getUTCMonth() - date2.getUTCMonth());
+            }).slice(0,4)
+            setUpcoming(tempList2);
+            setPopular(fullList.splice(index, 4));
         });
         setADS(getAdverts);
     }, [])

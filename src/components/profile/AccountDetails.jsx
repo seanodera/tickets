@@ -8,6 +8,7 @@ const AccountDetails = ({details}) => {
     const handleSignOut = () => {
      let success = logOut();
         history('/');
+        console.log(success);
      Window.location.reload();
     }
     return (<Card className={'glassEffect my-3 py-2 px-2 rounded-2'}>

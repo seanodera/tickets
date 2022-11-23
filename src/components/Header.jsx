@@ -6,7 +6,6 @@ import {AiOutlineSearch} from 'react-icons/ai'
 import { IoPersonCircle } from 'react-icons/io5'
 import { LinkContainer } from 'react-router-bootstrap'
 import {getUser, getUserDetails} from '../podo/firebaseFunctions'
-import {getAuth} from "firebase/auth";
 
 
 const Header = () => {
@@ -27,7 +26,7 @@ const Header = () => {
        setUser(getUser());
      setLoggedIn(false);
    }
-  }, [user, getAuth()])
+  }, [user])
   
   return (
     <header>

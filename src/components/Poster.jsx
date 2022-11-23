@@ -23,7 +23,7 @@ const Poster = ({eventDetails}) => {
                 <div className={'d-flex flex-row flex-fill justify-content-end'}>
                     <div className={'text-white text-center bg-secondary px-1 pt-1 mx-1 my-1  rounded-1'}
                          style={{}}>
-                        <p>{date.getDay()} <br/> {monthStringShort(date.getMonth())} <br/> {date.getFullYear()}</p>
+                        <p>{date.getDate()} <br/> {monthStringShort(date.getMonth())} <br/> {date.getFullYear()}</p>
                     </div>
                 </div>
             </CardHeader>
