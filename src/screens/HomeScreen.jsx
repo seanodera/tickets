@@ -3,6 +3,7 @@ import {Carousel, CarouselItem, Col, Container, Row} from 'react-bootstrap'
 import Poster from '../components/Poster';
 import {getAdverts, getEvents} from '../podo/firebaseFunctions';
 import HomeAd from "../components/HomeAd";
+import WeeklySection from "../components/WeeklySection";
 
 
 const HomeScreen = () => {
@@ -109,6 +110,9 @@ const HomeScreen = () => {
                     </Col>))}
             </Row>
         </Container>
+       <Container className={'mt-3'} >
+           <WeeklySection/>
+       </Container>
     </>)
 }
 

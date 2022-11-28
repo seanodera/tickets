@@ -45,13 +45,13 @@ const Poster = ({eventDetails}) => {
                     </Col>
                     <Col md={'4'}>
                         <span>
-                            <Card.Text><BiTime/><br/>{date.getHours()}:{date.getMinutes()}</Card.Text>
+                            <Card.Text><BiTime/><br/>{date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2})}:{date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2})}</Card.Text>
                         </span>
                     </Col>
                     <Col md={'4'} className={'verticalCenter'}>
                             <span>
                                 <Card.Text>{(eventDetails.options[0].price === 0) ? 'Free' : (<span>
-                                    <BsCurrencyEuro/> {eventDetails.options[0].price}
+                                    <BsCurrencyEuro/> {eventDetails.options[0].price.toLocaleString(undefined, {minimumFractionDigits: 2})}
                                 </span>)}
                                     </Card.Text>
                             </span>

@@ -34,7 +34,8 @@ const EventScreen = () => {
             makeReservation(id, 0, 0);
         }
     }
-
+    let address = faker.address;
+    console.log(`https://maps.google.com/maps?q='${address.latitude(36,34)}','${address.longitude(34,32)}'&hl=es&z=14&amp;output=embed`)
     if (details.options.length === 0) {
         return (<LoadingScreen/>)
     } else return (<Container className={'py-3 '}>
@@ -52,11 +53,13 @@ const EventScreen = () => {
                         <h4><MdOutlineDescription/> Description</h4>
                         <p>{details.description}</p>
                     </ListGroupItem>
+
                     <ListGroupItem className={'py-0'}>
                         <h4><IoLocationOutline size={28}/> Location</h4>
                         <Container fluid ref={_ref} className='py-0 px-0 my-0 mx-0'>
                             <iframe className={'fillSpace'}
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13046.2860819164!2d33.314930399999994!3d35.1673054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de1a65601ddee1%3A0xb417b59ceaab7506!2sUniversity%20of%20Nicosia!5e0!3m2!1sen!2s!4v1648572216520!5m2!1sen!2s"
+
+                                    src={`https://maps.google.com/maps?q='${address.latitude(36,34)}','${address.longitude(34,32)}'&hl=es&z=14&amp;output=embed`}
                                     title='maps' allowFullScreen='' loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"></iframe>
                         </Container>
