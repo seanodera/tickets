@@ -60,7 +60,7 @@ const WeeklySection = () => {
                         </LinkContainer>
                     </Col>
                     <Col md={'3'} className={'fillSpace'}>
-                        <h6 className={'text-white'}>Wednesday</h6>
+                        <h5 className={'text-white'}>Wednesday</h5>
                         <LinkContainer to={'/'}>
                             <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
                                 <Card.Img variant={'top'} className={'rounded-top'}
@@ -73,7 +73,7 @@ const WeeklySection = () => {
                         </LinkContainer>
                     </Col>
                     <Col md={'3'}>
-                        <h6 className={'text-white'}>Thursday</h6>
+                        <h5 className={'text-white'}>Thursday</h5>
                         <LinkContainer to={'/'}>
                             <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
                                 <Card.Img variant={'top'} className={'rounded-top'}
@@ -86,7 +86,7 @@ const WeeklySection = () => {
                         </LinkContainer>
                     </Col>
                     <Col md={'3'}>
-                        <h6 className={'text-white'}>Friday</h6>
+                        <h5 className={'text-white'}>Friday</h5>
                         <LinkContainer to={'/'}>
                             <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
                                 <Card.Img variant={'top'} className={'rounded-top'}
@@ -99,7 +99,7 @@ const WeeklySection = () => {
                         </LinkContainer>
                     </Col>
                     <Col md={'3'}>
-                        <h6 className={'text-white'}>Saturday</h6>
+                        <h5 className={'text-white'}>Saturday</h5>
                         <LinkContainer to={'/'}>
                             <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
                                 <Card.Img variant={'top'} className={'rounded-top'}
@@ -112,7 +112,7 @@ const WeeklySection = () => {
                         </LinkContainer>
                     </Col>
                     <Col md={'3'}>
-                        <h6 className={'text-white'}>Sunday</h6>
+                        <h5 className={'text-white'}>Sunday</h5>
                         <LinkContainer to={'/'}>
                             <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
                                 <Card.Img variant={'top'} className={'rounded-top'}
@@ -144,6 +144,7 @@ const WeeklySection = () => {
 
                             </Card>
                         </LinkContainer>
+
                     </Col>
                     <Col>
                         <h6 className={'text-white'}>Tuesday</h6>

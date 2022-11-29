@@ -5,19 +5,22 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {createUser, getUser, signIn} from '../podo/firebaseFunctions'
 import {Link, useNavigate} from 'react-router-dom'
 import {AiOutlineFacebook, AiOutlineGoogle} from "react-icons/ai";
+import LoadingScreen from "../components/LoadingScreen";
 
 
 const Login = () => {
     const [second, setSecond] = useState(false);
     const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('0');
     const [email, setEmail] = useState('');
     const [pass, setpass] = useState('');
     let history = useNavigate();
 
-    if (getUser() !== null){
+    if (getUser() !== null) {
         history('/profile');
     }
+
     function changePage() {
         setSecond(true);
         setEmail(document.getElementById('Email1').value);
@@ -28,12 +31,11 @@ const Login = () => {
         let fName = document.getElementById('firstNameId').value;
         let lName = document.getElementById('lastNameId').value;
         let phone = document.getElementById('phoneId').value;
+        setLoading(true);
         var successObj = await createUser({
-            'firstName': fName,
-            'lastName': lName,
-            'phone': phone,
-            'email': email,
+            'firstName': fName, 'lastName': lName, 'phone': phone, 'email': email,
         }, pass);
+        setLoading(false)
         if (successObj.success) {
             setShow(true);
             setErrorMessage('Login Successfull');
@@ -47,17 +49,22 @@ const Login = () => {
     async function handleSignIn() {
         let email = document.getElementById('Email1').value;
         let pass = document.getElementById('passId').value;
+        setLoading(true);
         var successObj = await signIn(email, pass);
+        setLoading(false);
         if (successObj.success) {
+
             history('/');
         } else {
             setShow(true);
             setErrorMessage(successObj.errorMessage);
+
         }
     }
 
-    return (
-        <Container className={'pe-0 me-0 bg-dark'} style={{
+    if (loading) {
+        return <LoadingScreen/>
+    } else return (<Container className={'pe-0 me-0 bg-dark'} style={{
             height: '100vh'
         }} fluid>
             <Row className={'fillSpace'}>
@@ -136,11 +143,11 @@ const Login = () => {
                                 <FormGroup>
                                     <Row className='mt-3 gx-1'>
                                         <Col>
-                                            <Button  variant='secondary' style={{width: '100%'}}
+                                            <Button variant='secondary' style={{width: '100%'}}
                                                     onClick={handleSignIn.bind(this)}>Login</Button>
                                         </Col>
                                         <Col>
-                                            <Button  variant='outline-secondary' style={{width: '100%'}}
+                                            <Button variant='outline-secondary' style={{width: '100%'}}
                                                     onClick={changePage.bind(this)}>Sign Up</Button>
                                         </Col>
                                     </Row>
@@ -155,9 +162,9 @@ const Login = () => {
                                 <hr/>
                             </p>
                             <FormGroup>
-                                <Button  variant='outline-secondary' style={{width: '100%'}}>
+                                <Button variant='outline-secondary' style={{width: '100%'}}>
                                     <AiOutlineGoogle/> Google</Button>
-                                <Button  className='my-1' variant='outline-secondary' style={{width: '100%'}}>
+                                <Button className='my-1' variant='outline-secondary' style={{width: '100%'}}>
                                     <AiOutlineFacebook/> Facebook</Button>
                             </FormGroup>
 
@@ -172,15 +179,12 @@ const Login = () => {
 
                 <Col className='py-2' md={'8'}>
                     <img src='/assets/login.jpeg' alt='login' style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
+                        width: '100%', height: '100%', objectFit: 'cover',
                     }}/>
                 </Col>
             </Row>
 
-        </Container>
-    )
+        </Container>)
 }
 
 

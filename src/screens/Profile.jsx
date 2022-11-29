@@ -26,7 +26,6 @@ const Profile = () => {
 
     }, [loaded, user])
     if (details == null || user == null) {
-        console.log(loaded)
         setTimeout(() => {
             if (user == null) {
                 history('/login')

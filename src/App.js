@@ -14,6 +14,7 @@ import VenueScreen from './screens/VenueScreen';
 import ActionUrlHandler from "./screens/ActionUrlHandler";
 import SellerScreen from "./screens/SellerScreen";
 import Profile from "./screens/Profile";
+import Logout from "./screens/Logout";
 
 function App() {
 
@@ -30,7 +31,7 @@ const Routed = () => {
 
     const [hide, setHide] = useState(false);
     useEffect(() => {
-        if (location.pathname === '/login' || location.pathname === '/confirm' || location.pathname === '/forgotpassword') {
+        if (location.pathname === '/login' || location.pathname === '/confirm' || location.pathname === '/forgotpassword' || location.pathname === '/logout') {
             setHide(true);
 
         } else {
@@ -51,7 +52,7 @@ const Routed = () => {
                     <Route path='/' element={<HomeScreen/>} exact/>
                     <Route path={'/profile'} element={<Profile/>}/>
                     <Route path={'/sell'} element={<SellerScreen/>} exact/>
-
+                    <Route path={'/logout'} element={<Logout/>}/>
                     <Route path='/event/:id' element={<EventScreen/>}/>
                     <Route path='/forgotPassword' element={<ForgotPassword/>}/>
                     <Route path='/venue/:id' element={<VenueScreen/>}/>

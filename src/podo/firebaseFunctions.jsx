@@ -235,14 +235,18 @@ function getUser() {
     return auth.currentUser;
 }
 
- function logOut() {
+ async function logOut() {
     let success = false;
-    signOut(auth).then(() => {
+
+    await signOut(auth).then(() => {
         success = true;
+        console.log('success sign out: ', success);
     }).catch(() => {
         success = false;
+        console.log('Error ocured signing out: ', success)
     });
-    return success;
+     console.log(success);
+     return success;
 }
 
 

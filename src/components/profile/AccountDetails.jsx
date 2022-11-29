@@ -1,16 +1,9 @@
 import React from "react";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import {logOut} from "../../podo/firebaseFunctions";
-import {useNavigate} from "react-router";
+import {LinkContainer} from "react-router-bootstrap";
 
 const AccountDetails = ({details}) => {
-    let history = useNavigate();
-    const handleSignOut = () => {
-     let success = logOut();
-        history('/');
-        console.log(success);
-     Window.location.reload();
-    }
+
     return (<Card className={'glassEffect my-3 py-2 px-2 rounded-2'}>
         <Row>
             <Col className={'text-center'} md={'auto'}>
@@ -36,7 +29,7 @@ const AccountDetails = ({details}) => {
                         <p>{details.phone}</p>
                     </Col>
                     <Col>
-                        <Button variant={'secondary'} onClick={handleSignOut.bind(this)}>Sign out</Button>
+                        <LinkContainer to={'/logout'}><Button variant={'secondary'}>Sign out</Button></LinkContainer>
                     </Col>
                 </Row>
             </Col>
