@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import AccountPicture from '../components/account.svg';
 import CreatePicture from '../components/create.svg';
 import {AiOutlineCheckCircle} from "react-icons/ai";
@@ -30,23 +30,23 @@ const SellerScreen = () => {
         <Container className={'py-5'}>
             <h4 className={'text-primary mb-4'}>You’re Covered When You Sell Tickets With TicketsCy</h4>
             <Row>
-                <Col>
+                <Col md={'6'}>
                     <SellerWidget icon={<AiOutlineCheckCircle size={40}/>} title={'Hassle Free'}
                                   text={'When you list with us, we’ll help manage your entire transaction. From transfers to\n payments we have you covered every step of the way.'}/>
 
                 </Col>
-                <Col>
+                <Col md={'6'}>
                     <SellerWidget icon={<MdPeople size={40}/>} title={'Reach More Buyers'}
                                   text={'Tickets Cy attracts thousands of fans looking for tickets everyday, giving you access to sell your tickets to any fan, anywhere.'}/>
                 </Col>
             </Row>
             <Row className={'pt-3'}>
-                <Col>
+                <Col md={'6'}>
                     <SellerWidget icon={<MdSupportAgent size={40}/>} title={'We’re By Your Side'}
                                   text={'Our dedicated team is with you from the moment you purchase tickets to the moment you find out you can’t go. When you have questions about selling tickets, we’re here to help.'}/>
 
                 </Col>
-                <Col>
+                <Col md={'6'}>
                     <SellerWidget icon={<BiCheckShield size={40}/>} title={'Ticket Protection'}
                                   text={'When you buy and sell your tickets with Tickets Cy, ticket protection comes standard. The ticket gets reissued in the buyer’s name and you get peace of mind.'}/>
 
@@ -56,7 +56,7 @@ const SellerScreen = () => {
         <div className={'bg-dark mt-3 '}><Container className={'py-5 px-5'}>
             <h4 className={'text-primary'}>Sell Your tickets in 3 easy steps</h4>
             <Row>
-                <Col>
+                <Col md={'4'}>
                     <div className={'mb-1'} style={{
                         width: '100%',
                         aspectRatio: 1
@@ -68,7 +68,7 @@ const SellerScreen = () => {
                     <p>The first step it to create an account and go visit the seller website at <a
                         href={'https://dashboard.ticketscy.shop'}>dashboard.ticketscy.shop</a></p>
                 </Col>
-                <Col>
+                <Col md={'4'}>
                     <div className={'mb-1'} style={{
                         width: '100%',
                         aspectRatio: 1
@@ -80,7 +80,7 @@ const SellerScreen = () => {
                     <p> Then you create your event on our dedicated seller website. The site also allows you to edit and
                         change your event.</p>
                 </Col>
-                <Col>
+                <Col md={'4'}>
                     <div className={'mb-1'} style={{
                         width: '100%',
                         aspectRatio: 1
@@ -93,22 +93,7 @@ const SellerScreen = () => {
                 </Col>
             </Row>
         </Container></div>
-        <Container fluid className={'mx-0 py-5 justify-content-center bg-secondary'}>
-            <Row>
-                <Col>
 
-                </Col>
-                <Col md={'4'}>
-                   <Card className={'glassEffect rounded-4'}>
-                       <iframe src={'https://dashboard.ticketscy.shop'} title={'tickets cy dashboard'} style={{
-                           aspectRatio: 1.6,
-                           width: '100%',
-                       }}/>
-                   </Card>
-                </Col>
-            </Row>
-
-        </Container>
     </div>)
 }
 

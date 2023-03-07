@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Col, Row} from "react-bootstrap";
 import {monthStringShort} from "../podo/utils";
-import LoadingScreen from "./LoadingScreen";
 
 const UpcomingEvents = ({upcoming}) => {
     let date0 = new Date(0);

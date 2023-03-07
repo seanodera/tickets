@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {Button, Container, FormGroup, Nav, Navbar, NavLink} from 'react-bootstrap'
+import {Button, Container, Nav, Navbar, NavLink} from 'react-bootstrap'
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
-import {AiOutlineSearch} from 'react-icons/ai'
-import {IoPersonCircle} from 'react-icons/io5'
 import {LinkContainer} from 'react-router-bootstrap'
 import {getUser, getUserDetails} from '../podo/firebaseFunctions'
 import {useLocation} from "react-router-dom";
@@ -16,6 +14,7 @@ const Header = () => {
     const [atHome, setAtHome] = useState(false);
     const [navbar, setNavbar] = useState(false)
     let location = useLocation();
+    console.log(loggedIn, details);
     const changeBackground = () => {
         console.log(window.scrollY)
         if (window.scrollY >= 200) {
@@ -44,6 +43,7 @@ const Header = () => {
             setAtHome(false);
 
         }
+        // eslint-disable-next-line
     }, [location.pathname])
 
 
