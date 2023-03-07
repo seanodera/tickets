@@ -58,8 +58,8 @@ const Header = () => {
 
 
                     <NavbarToggle type='button' aria-controls='basic-navbar-nav'/>
-                    <NavbarCollapse id='basic-navbar-nav' className='justify-content-center flex-fill'>
-                        <Nav className='justify-content-center flex-fill'>
+                    <NavbarCollapse id='basic-navbar-nav' className='justify-content-center'>
+                        <Nav className='justify-content-around ms-auto '>
 
                             {/*<LinkContainer to={loggedIn?   '/profile' : '/login'}>*/}
                             {/*  <NavLink style={{display: 'inline-flex'}}>*/}
@@ -75,16 +75,17 @@ const Header = () => {
                                     Home
                                 </NavLink>
                             </LinkContainer>
+                            <LinkContainer to={'/events'}>
+                                <NavLink>
+                                    Events
+                                </NavLink>
+                            </LinkContainer>
                             <LinkContainer to={'/'}>
                                 <NavLink>
                                     About
                                 </NavLink>
                             </LinkContainer>
-                            <LinkContainer to={'/'}>
-                                <NavLink>
-                                    Events
-                                </NavLink>
-                            </LinkContainer>
+
                         </Nav>
                     </NavbarCollapse>
 

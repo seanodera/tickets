@@ -8,7 +8,46 @@ import {BsCurrencyEuro} from "react-icons/bs";
 import {BiTime} from "react-icons/bi";
 import {monthStringShort} from "../podo/utils";
 
+
 const Poster = ({eventDetails}) => {
+    let date = new Date(0);
+    date.setUTCSeconds(eventDetails.Date.seconds, eventDetails.Date.nanoseconds);
+    let address = faker.address;
+    return (<LinkContainer to={`/event/${eventDetails.id}`}>
+        <div className={'glassEffect rounded-top px-0 h-100'}>
+            <div className={'rounded-top'} style={{
+                backgroundImage: `url("${eventDetails.image}")`,
+                backgroundSize: 'cover',
+                width: '100%',
+                aspectRatio: '1',
+                objectFit: 'contain',
+            }}>
+                <div className={'d-flex flex-row flex-fill justify-content-start ps-2 pt-2'}>
+                    <div className={'rounded-2 p-1 bg-secondary'}>
+                        {(eventDetails.options[0].price === 0) ? 'FREE' : ` $${eventDetails.options[0].price.toLocaleString(undefined, {minimumFractionDigits: 2})}`}
+                    </div>
+                </div>
+            </div>
+            <div className={'px-2 pt-2 d-flex flex-row'}>
+                <div className={'text-center'}>
+                    <span className={'text-secondary h5'}>{monthStringShort(date.getMonth())}</span>
+                    <h4 className={'text-white'}>{date.getDate()}</h4>
+                    <h5 className={'text-white'}>{date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2})}:{date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2})}</h5>
+                </div>
+                <div className={'ps-2'}>
+                    <span className={'h5 text-white  limitLines-2'}>{eventDetails.name}</span>
+                    <LinkContainer to={'/venue/' + eventDetails.id}>
+                        <p className={'text-secondary'}>{'Venue Name'}</p>
+                    </LinkContainer>
+                    <p>{address.street()}, {address.secondaryAddress()}, {address.zipCode()}, {address.cityName()}</p>
+                </div>
+            </div>
+        </div>
+    </LinkContainer>)
+}
+
+
+const OldPoster = ({eventDetails}) => {
     let date = new Date(0);
     date.setUTCSeconds(eventDetails.Date.seconds, eventDetails.Date.nanoseconds);
     return (<LinkContainer to={`/event/${eventDetails.id}`}>

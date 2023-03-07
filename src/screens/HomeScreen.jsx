@@ -81,7 +81,7 @@ const HomeScreen = () => {
                 </Col>
             </Row>
         </Container>
-        <Container className={'pt-3'}>
+        <Container className={'py-3'}>
             <h2 className={'text-secondary text-center mb-3'}>Regular Spots</h2>
             <div style={{
                 overflowX: 'scroll',
@@ -90,22 +90,14 @@ const HomeScreen = () => {
                 <EventsSection />
             </div>
         </Container>
-        <Container>
-            <Row className={'mt-3 mb-2 py-1 pe-2 ps-0'}>
-                <Col md={'3'}>
-                    <h3 className={'text-white text-start'}>Popular Events</h3>
-                </Col>
-                <Col md={'9'}>
-                    <hr/>
-                </Col>
-            </Row>
+        <Container className={'py-3'}>
+            <h2 className={'text-secondary text-center mb-3'}>Popular Events</h2>
             <Row className='gx-3 gy-3'>
-
                 {popular.map((details) => (<Col key={details.id} md='3'> <Poster eventDetails={details} /> </Col>))}
             </Row>
         </Container>
 
-        <Container className='mt-3 pb-3'>
+        <Container className={'py-3'}>
             <h2 className={'text-secondary text-center mb-3'}>Upcoming Events</h2>
             {(upcoming.length < 3)? <div><LoadingScreen/></div> : <UpcomingEvents upcoming={upcoming}/>}
 

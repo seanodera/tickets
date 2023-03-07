@@ -14,6 +14,7 @@ import ActionUrlHandler from "./screens/ActionUrlHandler";
 import SellerScreen from "./screens/SellerScreen";
 import Profile from "./screens/Profile";
 import Logout from "./screens/Logout";
+import Events from "./screens/Events";
 
 function App() {
 
@@ -55,6 +56,7 @@ const Routed = () => {
                     <Route path='/event/:id' element={<EventScreen/>}/>
                     <Route path='/forgotPassword' element={<ForgotPassword/>}/>
                     <Route path='/venue/:id' element={<VenueScreen/>}/>
+                    <Route path={'/events'} element={<Events/>}/>
                     <Route path={'/auth/action?mode=:action&oobCode=:oob'} element={<ActionUrlHandler/>}/>
                 </Routes>
 
