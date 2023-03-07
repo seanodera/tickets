@@ -12,8 +12,7 @@ const UpcomingEvents = ({upcoming}) => {
     date1.setUTCSeconds(upcoming[1].Date.seconds, upcoming[1].Date.nanoseconds)
 
     date2.setUTCSeconds(upcoming[2].Date.seconds, upcoming[2].Date.nanoseconds)
-
-
+    // TODO: create small screen version
     return (<Row className={'gx-0'} style={{
         aspectRatio: '2.2',
 
@@ -23,6 +22,7 @@ const UpcomingEvents = ({upcoming}) => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             objectFit: 'contain',
+
         }}>
             <div className={'upcomingGradient d-flex flex-column justify-content-end px-3'}>
                 <p>{`${monthStringShort(date0.getMonth())} ${date0.getDate()}, ${date0.getFullYear()}`}</p>

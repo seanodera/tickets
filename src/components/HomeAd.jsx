@@ -1,12 +1,6 @@
 import React from "react";
-import {Button, Col, Container, Row} from "react-bootstrap";
-import {IoLocationOutline} from "react-icons/io5";
-import {AiOutlineCalendar} from "react-icons/ai";
-import {BiBookBookmark} from "react-icons/bi";
-import {BsCurrencyEuro} from "react-icons/bs";
-import {LinkContainer} from "react-router-bootstrap";
-import {getAbbreviation, monthStringShort} from "../podo/utils";
-
+import {Button, Container} from "react-bootstrap";
+import {monthStringShort} from "../podo/utils";
 
 
 const HomeAd = ({advert}) => {
@@ -26,7 +20,7 @@ const HomeAd = ({advert}) => {
                        className=' px-3 customCenter'>
                 <div className={'w-50 justify-content-center'}>
                     <div className={'d-flex flex-row flex-fill justify-content-center'}>
-                        <div className={'border-5 border-secondary px-1 pt-1 mb-2 text-center'} >
+                        <div className={'border-5 border-secondary px-1 pt-1 mb-2 text-center'}>
                             <h1 className={'text-primary'}>{date.getDate()}</h1>
                             <h3 className={'text-primary'}>{monthStringShort(date.getMonth())}</h3>
                         </div>

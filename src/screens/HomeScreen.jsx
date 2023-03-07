@@ -50,7 +50,7 @@ const HomeScreen = () => {
         </Carousel>
         <Container fluid>
             <Row className={'bg-dark py-2'}>
-                <Col md={'3'}>
+                <Col md={'4'}>
                     <div className='py-3 customCenter colorThemeTrans' style={{
                         height: '100%',
                     }}>
@@ -58,7 +58,7 @@ const HomeScreen = () => {
                         <p className={'text-black'}>immediate online delivery</p>
                     </div>
                 </Col>
-                <Col md={'3'}>
+                <Col md={'4'}>
                     <div className='py-3 customCenter' style={{
                         height: '100%',
                         backgroundColor: 'rgba(38, 38, 38, 0.6)'
@@ -68,7 +68,7 @@ const HomeScreen = () => {
                         <p className={'text-white'}>Purchases made here are refundable</p>
                     </div>
                 </Col>
-                <Col md={'3'}>
+                <Col md={'4'}>
                     <div className='py-3 customCenter' style={{
                         height: '100%',
                         WebkitBackdropFilter: 'contrast(20%)',
