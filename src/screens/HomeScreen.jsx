@@ -4,6 +4,9 @@ import Poster from '../components/Poster';
 import {getAdverts, getEvents} from '../podo/firebaseFunctions';
 import HomeAd from "../components/HomeAd";
 import WeeklySection from "../components/WeeklySection";
+import EventsSection from "../components/eventsSection";
+import UpcomingEvents from "../components/UpcomingEvents";
+import LoadingScreen from "../components/LoadingScreen";
 
 
 const HomeScreen = () => {
@@ -78,6 +81,15 @@ const HomeScreen = () => {
                 </Col>
             </Row>
         </Container>
+        <Container className={'pt-3'}>
+            <h2 className={'text-secondary text-center mb-3'}>Regular Spots</h2>
+            <div style={{
+                overflowX: 'scroll',
+                maxWidth: '100%',
+            }}>
+                <EventsSection />
+            </div>
+        </Container>
         <Container>
             <Row className={'mt-3 mb-2 py-1 pe-2 ps-0'}>
                 <Col md={'3'}>
@@ -94,25 +106,11 @@ const HomeScreen = () => {
         </Container>
 
         <Container className='mt-3 pb-3'>
-            <Row className={'mt-3 mb-2 py-1 pe-0 ps-0'}>
-                <Col md={'auto'}>
-                    <h3 className={'text-white text-start'}>Upcoming Events</h3>
-                </Col>
-                <Col>
-                    <hr/>
-                </Col>
+            <h2 className={'text-secondary text-center mb-3'}>Upcoming Events</h2>
+            {(upcoming.length < 3)? <div><LoadingScreen/></div> : <UpcomingEvents upcoming={upcoming}/>}
 
-            </Row>
-
-            <Row className='gx-3 gy-3'>
-                {upcoming.map((details) => (
-                    <Col key={details.id} md='3'> <Poster className={'fillSpace'} eventDetails={details} />
-                    </Col>))}
-            </Row>
         </Container>
-       <Container className={'mt-3'} >
-           <WeeklySection/>
-       </Container>
+
     </>)
 }
 

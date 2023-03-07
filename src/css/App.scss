@@ -50,6 +50,22 @@ color: $secondary;
     -webkit-line-clamp: 4;
     overflow: hidden;
 }
+.limitLines-1{
+    display: -webkit-box;
+    max-lines: 1 ;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.limitLines-2{
+    display: -webkit-box;
+    max-lines: 2 ;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 .p{
     display: inline;
 }
@@ -69,6 +85,14 @@ main {
     background: linear-gradient(180deg,$dark,$body-bg);
     /* background-color: #262626; */
 }
+
+.landingGradient {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg,rgba(0,0,0,0),$body-bg);
+}
+
+
 
 .fixPad {
     padding-left: calc(var(--bs-gutter-x) * .5);
@@ -126,6 +150,12 @@ code {
     border-color: $secondary transparent $primary transparent;
     border-radius: 50%;
     animation: spin-anim 1.2s linear infinite;
+}
+
+.upcomingGradient {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg,rgba(0,0,0,0),$body-bg);
 }
 
 @keyframes spin-anim {

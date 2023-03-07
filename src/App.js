@@ -1,7 +1,6 @@
 import './App.css';
 import './css/App.scss';
 import Header from './components/Header';
-// import './bootstrap.css';
 import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen';
 import Footer from './components/Footer';

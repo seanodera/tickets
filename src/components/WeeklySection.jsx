@@ -3,7 +3,90 @@ import {Card, Col, Row} from "react-bootstrap";
 import {faker} from "@faker-js/faker";
 import {LinkContainer} from "react-router-bootstrap";
 
+const EventWidget = ({event}) => {
+
+    return (<LinkContainer to={'/'}>
+        <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
+            <Card.Img variant={'top'} className={'rounded-top'}
+                      src={event.cover}/>
+            <Card.Title className={'text-white px-1 pt-2'}>{event.venue}</Card.Title>
+            <Card.Text className={'text-white px-1'}>{event.eventName}</Card.Text>
+
+        </Card>
+    </LinkContainer>);
+}
+
+const WeeklyWidget = ({weekEvents}) => {
+
+    return (<div className={`${(weekEvents.events.length > 1) ? 'glassEffect rounded-4 px-2' : ''} py-2`}>
+            <h5 className={'text-white'}>{weekEvents.day}</h5>
+            {(weekEvents.events.length > 1) ? (<Row>
+                {weekEvents.events.map((_event, index) => (<Col key={index}>
+                    <EventWidget event={_event}/>
+                </Col>))}
+            </Row>) : <EventWidget event={weekEvents.events[0]}/>}
+
+        </div>)
+}
+
 const WeeklySection = () => {
+
+    let list = [{
+        day: 'Monday', events: [{
+            venue: 'Club Teez',
+            eventName: 'RnB Night',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Tuesday', events: [{
+            venue: 'Ginery',
+            eventName: 'Coming Soon',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Wednesday', events: [{
+            venue: 'Ithaki venue',
+            eventName: 'Erasmus',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }, {
+            venue: 'Central Club',
+            eventName: 'Erasmus',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Thursday', events: [{
+            venue: 'Ginery Thursday',
+            eventName: 'Premium bottles',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Friday', events: [{
+            venue: 'Club Teez',
+            eventName: 'Popping Bottles',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Saturday', events: [{
+
+            venue: 'Club Teez',
+            eventName: 'RnB Night',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    }, {
+        day: 'Sunday', events: [{
+            venue: 'Club Teez',
+            eventName: 'RnB Night',
+            cover: faker.image.abstract(500, 500, true),
+            id: faker.random.numeric(),
+        }]
+    },]
 
     return (<div>
         <div className={'bg-secondary rounded-3'}>
@@ -14,219 +97,20 @@ const WeeklySection = () => {
                         <h3 className={'text-white text-start'}>Weekly Vibe</h3>
                     </Col>
                     <Col className={'text-end'}>
-                       <p>View our regular Partying and clubbing spots through out the week</p>
+                        <p>View our regular Partying and clubbing spots through out the week</p>
                     </Col>
 
                 </Row>
                 <Row className={'gx-3 gy-2 px-2 mt-2 d-flex flex-row justify-content-center'}>
-                    <Col md={'6'} className={'glassEffect rounded-4 py-2 px-2'}>
-                        <h5 className={'text-white'}>Monday</h5>
-                       <Row>
-                           <Col>
-                               <LinkContainer to={'/'}>
-                                   <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                       <Card.Img variant={'top'} className={'rounded-top'}
-                                                 src={faker.image.abstract(500, 500, true)}/>
-                                       <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                       <Card.Text className={'text-white px-1'}>Rnb Night</Card.Text>
 
+                    {list.map((weekEvents, index) => (
+                        <Col key={index} md={(weekEvents.events.length > 1) ? 6 : 3}><WeeklyWidget
+                            weekEvents={weekEvents} key={index}/></Col>))}
 
-                                   </Card>
-                               </LinkContainer></Col>
-                           <Col>
-                               <LinkContainer to={'/'}>
-                                   <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                       <Card.Img variant={'top'} className={'rounded-top'}
-                                                 src={faker.image.abstract(500, 500, true)}/>
-                                       <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                       <Card.Text className={'text-white px-1'}>Rnb Night</Card.Text>
-
-
-                                   </Card>
-                               </LinkContainer></Col>
-                       </Row>
-                    </Col>
-                    <Col md={'3'} className={'py-2'}>
-                        <h5 className={'text-white'}>Tuesday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Lost & Found</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Bar</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col md={'3'} className={'fillSpace'}>
-                        <h5 className={'text-white'}>Wednesday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Ithaki Venue</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Esn wednesday</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col md={'3'}>
-                        <h5 className={'text-white'}>Thursday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>The Ginery</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Mr. Cause</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col md={'3'}>
-                        <h5 className={'text-white'}>Friday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col md={'3'}>
-                        <h5 className={'text-white'}>Saturday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col md={'3'}>
-                        <h5 className={'text-white'}>Sunday</h5>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>State Club</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
                 </Row>
             </div>
         </div>
-        <div className={'py-3'}/>
-        <div className={'bg-secondary rounded-3'}>
-            <div className={'glassEffect rounded-3 py-3 px-2'}>
-                <h4 className={'text-white'}>Weekly Vibe</h4>
-                <Row className={'gx-1 gy-2 mt-2 d-flex flex-row justify-content-center'}>
-                    <Col>
-                        <h6 className={'text-white'}>Monday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Rnb Night</Card.Text>
 
-
-                            </Card>
-                        </LinkContainer>
-
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Tuesday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Lost & Found</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Bar</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Wednesday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Ithaki Venue</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Esn wednesday</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Thursday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>The Ginery</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Mr. Cause</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Friday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Saturday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>Club Teez</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                    <Col>
-                        <h6 className={'text-white'}>Sunday</h6>
-                        <LinkContainer to={'/'}>
-                            <Card className={'glassEffect rounded-3 rounded-top pb-2'}>
-                                <Card.Img variant={'top'} className={'rounded-top'}
-                                          src={faker.image.abstract(500, 500, true)}/>
-                                <Card.Title className={'text-white px-1 pt-2'}>State Club</Card.Title>
-                                <Card.Text className={'text-white px-1'}>Popping Bottles</Card.Text>
-
-
-                            </Card>
-                        </LinkContainer>
-                    </Col>
-                </Row>
-            </div>
-        </div>
     </div>)
 }
 

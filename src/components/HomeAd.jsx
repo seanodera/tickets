@@ -16,53 +16,35 @@ const HomeAd = ({advert}) => {
     return (<div style={{
         backgroundImage: `url("${advert.image}")`, backgroundSize: 'cover', backgroundPosition: 'center'
     }}>
-        <Container fluid
-                   style={{
-                       width: "100%", minHeight: '40vh',
-                       aspectRatio: '2.5',
-                       backdropFilter: 'blur(0px)',
-                       WebkitBackdropFilter: 'blur(0px)',
-                   }}
-                   className=' px-3'>
-            <Row className={'ms-5 fillSpace'}>
-                <Col className={'verticalCenter'} md={'4'}>
-                    <div className={'text-white'}>
-                        <h2 className={'text-white'}>{advert.title}</h2>
-                        <Row className={'mb-1'} md={'auto'}>
-                            <Col md={'auto'}>
-                           <span>
-                               <IoLocationOutline/> {advert.location}
-                           </span>
-                            </Col>
-                            <Col md={'auto'}>
-                           <span>
-                               <AiOutlineCalendar/> {monthStringShort(date.getMonth())}, {getAbbreviation(date.getDay())}
-                           </span>
-                            </Col>
-                            <Col md={'auto'}>
-                          <span>
-                               <BsCurrencyEuro/> {advert.price}
-                          </span>
-                            </Col>
-                        </Row>
-                        <p className={'limitLines'}>
-                            {advert.description}
-                        </p>
-                        <span>
-                      <LinkContainer to={'/' + advert.id}>
-                           <Button variant={'secondary'}>
-                           Visit event
-                       </Button>
-                      </LinkContainer>
-                       <Button className={'mx-3'} variant={'outline-secondary'}>
-                           <BiBookBookmark size={22}/>
-                       </Button>
-                   </span>
+        <div className={'landingGradient'}>
+            <Container fluid
+                       style={{
+                           width: "100vw", height: '100vh',
+                           backdropFilter: 'blur(0px)',
+                           WebkitBackdropFilter: 'blur(0px)',
+                       }}
+                       className=' px-3 customCenter'>
+                <div className={'w-50 justify-content-center'}>
+                    <div className={'d-flex flex-row flex-fill justify-content-center'}>
+                        <div className={'border-5 border-secondary px-1 pt-1 mb-2 text-center'} >
+                            <h1 className={'text-primary'}>{date.getDate()}</h1>
+                            <h3 className={'text-primary'}>{monthStringShort(date.getMonth())}</h3>
+                        </div>
                     </div>
 
-                </Col>
-            </Row>
-        </Container>
+                    <h1 className={'text-primary'}>{advert.title}</h1>
+                    <p className={'limitLines'}>{advert.description}</p>
+                    <div className={'d-flex flex-row flex-fill justify-content-center'}>
+                        <Button variant={'secondary me-1'}>
+                            Reserve
+                        </Button>
+                        <Button variant={'outline-primary ms-1'}>
+                            Event Details
+                        </Button>
+                    </div>
+                </div>
+            </Container>
+        </div>
     </div>)
 }
 
