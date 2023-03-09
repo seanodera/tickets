@@ -70,7 +70,8 @@ const VenueScreen = () => {
            <Container className={'py-3'}>
                <Row>
                    <Col>
-
+                       <h3 className={'text-secondary'}>Description</h3>
+                       <p>{mainEvent.description}</p>
                    </Col>
                    <Col md={'4'}>
                        <h4 className={'text-white'}>Featured Event</h4>
