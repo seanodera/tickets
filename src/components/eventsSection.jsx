@@ -193,3 +193,4 @@ const EventsSection = () => {
 }
 
 export default EventsSection;
+export {NewPoster}

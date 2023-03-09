@@ -36,7 +36,8 @@ const Header = () => {
             setUser(getUser());
             setLoggedIn(false);
         }
-        if (location.pathname === '/') {
+        console.log(location.pathname)
+        if (location.pathname === '/' || location.pathname === '/venue/0') {
             setAtHome(true)
             window.addEventListener("scroll", changeBackground)
         } else {
@@ -80,12 +81,16 @@ const Header = () => {
                                     Events
                                 </NavLink>
                             </LinkContainer>
+                            <LinkContainer to={'/venues'}>
+                                <NavLink>
+                                    Venues
+                                </NavLink>
+                            </LinkContainer>
                             <LinkContainer to={'/'}>
                                 <NavLink>
                                     About
                                 </NavLink>
                             </LinkContainer>
-
                         </Nav>
                     </NavbarCollapse>
 
