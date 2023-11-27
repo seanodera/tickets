@@ -7,10 +7,91 @@ import {addEvent, getEventDetails, getUser, makeReservation, updateEvent} from '
 import {faker} from "@faker-js/faker";
 import {BiBookBookmark, BiMoney, BiShare} from "react-icons/bi";
 import LoadingScreen from "../components/LoadingScreen";
+import {NewPoster} from "../components/eventsSection";
 
 const EventScreen = () => {
     let {id} = useParams();
-
+    let list = [{
+        id: 0,
+        name: faker.company.name(),
+        poster: faker.image.nightlife(500, 500, true),
+        venue: {
+            id: 0, name: faker.company.name(), address: {
+                line1: '1 Address Line', line2: '2 Address Line', district: 'District', City: 'City', Country: 'Cyprus',
+            }, mobile: '99799123'
+        },
+        description: faker.lorem.lines(3),
+        time: faker.date.soon(5),
+        date: faker.date.soon(5),
+        contact: '99799123',
+        options: [{
+            id: 0, name: '', price: parseInt(faker.commerce.price(0, 20)),
+        }]
+    }, {
+        id: 0,
+        name: faker.company.name(),
+        poster: faker.image.nightlife(500, 500, true),
+        venue: {
+            id: 0, name: faker.company.name(), address: {
+                line1: '1 Address Line', line2: '2 Address Line', district: 'District', City: 'City', Country: 'Cyprus',
+            }, mobile: '99799123'
+        },
+        description: faker.lorem.lines(3),
+        time: faker.date.soon(5),
+        date: faker.date.soon(5),
+        contact: '99799123',
+        options: [{
+            id: 0, name: '', price: parseInt(faker.commerce.price(0, 20)),
+        }]
+    }, {
+        id: 0,
+        name: faker.company.name(),
+        poster: faker.image.nightlife(500, 500, true),
+        venue: {
+            id: 0, name: faker.company.name(), address: {
+                line1: '1 Address Line', line2: '2 Address Line', district: 'District', City: 'City', Country: 'Cyprus',
+            }, mobile: '99799123'
+        },
+        description: faker.lorem.lines(3),
+        time: faker.date.soon(5),
+        date: faker.date.soon(5),
+        contact: '99799123',
+        options: [{
+            id: 0, name: '', price: parseInt(faker.commerce.price(0, 20)),
+        }]
+    }, {
+        id: 0,
+        name: faker.company.name(),
+        poster: faker.image.nightlife(500, 500, true),
+        venue: {
+            id: 0, name: faker.company.name(), address: {
+                line1: '1 Address Line', line2: '2 Address Line', district: 'District', City: 'City', Country: 'Cyprus',
+            }, mobile: '99799123'
+        },
+        description: faker.lorem.lines(3),
+        time: faker.date.soon(5),
+        date: faker.date.soon(5),
+        contact: '99799123',
+        options: [{
+            id: 0, name: '', price: parseInt(faker.commerce.price(0, 20)),
+        }]
+    }, {
+        id: 0,
+        name: faker.company.name(),
+        poster: faker.image.nightlife(500, 500, true),
+        venue: {
+            id: 0, name: faker.company.name(), address: {
+                line1: '1 Address Line', line2: '2 Address Line', district: 'District', City: 'City', Country: 'Cyprus',
+            }, mobile: '99799123'
+        },
+        description: faker.lorem.lines(3),
+        time: faker.date.soon(5),
+        date: faker.date.soon(5),
+        contact: '99799123',
+        options: [{
+            id: 0, name: '', price: parseInt(faker.commerce.price(0, 20)),
+        }]
+    },]
     const _ref = useRef(null);
     let history = useNavigate();
     const [details, setDetails] = useState({
@@ -34,8 +115,9 @@ const EventScreen = () => {
             makeReservation(id, 0, 0);
         }
     }
+
     let address = faker.address;
-    console.log(`https://maps.google.com/maps?q='${address.latitude(36,34)}','${address.longitude(34,32)}'&hl=es&z=14&amp;output=embed`)
+    console.log(`https://maps.google.com/maps?q='${address.latitude(36, 34)}','${address.longitude(34, 32)}'&hl=es&z=14&amp;output=embed`)
     if (details.options.length === 0) {
         return (<LoadingScreen/>)
     } else return (<Container className={'py-3 '}>
@@ -57,11 +139,9 @@ const EventScreen = () => {
                     <ListGroupItem className={'py-0'}>
                         <h4><IoLocationOutline size={28}/> Location</h4>
                         <Container fluid ref={_ref} className='py-0 px-0 my-0 mx-0'>
-                            <iframe className={'fillSpace'}
-
-                                    src={`https://maps.google.com/maps?q='${address.latitude(36,34)}','${address.longitude(34,32)}'&hl=es&z=14&amp;output=embed`}
-                                    title='maps' allowFullScreen='' loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"></iframe>
+                            <span><h6> Street Address: </h6><p>{} </p></span>
+                            <span><h6> City: </h6> </span>
+                            <span><h6>Country: </h6> </span>
                         </Container>
                     </ListGroupItem>
                     <ListGroupItem className={'pb-0'}>
@@ -131,7 +211,22 @@ const EventScreen = () => {
                 </ListGroup>
             </Col>
         </Row>
-
+        <Container className={'py-3 my-5 bg-dark'}>
+            <h1 className={'text-primary'}>More on {details.location}</h1>
+            <span className={'my-2'}>
+                <Button className={'rounded-3 mx-1'} variant={'outline-primary'} size={'sm'}>Follow</Button>
+                <Button className={'rounded-3 mx-1'} variant={'outline-secondary'} size={'sm'}>
+                    View Profile
+                </Button>
+            </span>
+            <h2 className={'text-primary'}>Upcoming Events in {details.location} </h2>
+            <Row className={'gx-5 gy-3'} style={{
+                flexWrap: 'nowrap', overflow: 'hidden'
+            }}>
+                {list.map((_event, index) => (
+                    <Col key={index} md={'4'} className={''}><NewPoster event={_event}/></Col>))}
+            </Row>
+        </Container>
     </Container>)
 }
 

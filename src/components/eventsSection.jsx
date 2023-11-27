@@ -2,11 +2,12 @@ import React from "react";
 import {Col, Row} from "react-bootstrap";
 import {faker} from "@faker-js/faker";
 import {LinkContainer} from "react-router-bootstrap";
-import {monthStringShort} from "../podo/utils";
+import {monthStringShort,  dayStringShort} from "../podo/utils";
+import {IoLocation, IoLocationOutline, IoPersonOutline} from "react-icons/io5";
 
 const NewPoster = ({event}) => {
     let date = event.date;
-    return (<div className={'glassEffect rounded-top px-0 h-100'}>
+    return (<div className={'glassEffect rounded-top px-0 h-100 mb-2'}>
 
         <div className={'rounded-top'} style={{
             backgroundImage: `url("${event.poster}")`,
@@ -21,19 +22,13 @@ const NewPoster = ({event}) => {
                 </div>
             </div>
         </div>
-        <div className={'px-2 pt-2 d-flex flex-row'}>
-            <div className={'text-center'}>
-                <span className={'text-secondary h5'}>{monthStringShort(date.getMonth())}</span>
-                <h4 className={'text-white'}>{date.getDate()}</h4>
-                <h5 className={'text-white'}>{date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2})}:{date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2})}</h5>
-            </div>
-            <div className={'ps-2'}>
-                <span className={'h5 text-white  limitLines-2'}>{event.name}</span>
-                <LinkContainer to={'/venue/' + event.id}>
-                    <p className={'text-secondary'}>{event.venue.name}</p>
-                </LinkContainer>
-                <p>{event.venue.address.line1}, {event.venue.address.line2}, {event.venue.address.district}, {event.venue.address.City}</p>
-            </div>
+        <div className={'px-2 pt-2 '}>
+            <h4 className={'text-secondary'}>{dayStringShort(date.getDay())}, {date.getDate()} {monthStringShort(date.getMonth())}</h4>
+            <span className={'h4 text-white  limitLines-2'}>{event.name}</span>
+            <LinkContainer to={'/venue/' + event.id}>
+                <p className={'text-secondary'}><IoLocationOutline size={20}/> {event.venue.name}</p>
+            </LinkContainer>
+            <p className={'text-secondary'}><IoPersonOutline size={20}/> {event.id} </p>
         </div>
 
     </div>)
@@ -69,7 +64,7 @@ const EventsSection = () => {
             ]
         },
         {
-            id: 0,
+            id: 1,
             name: faker.company.name(),
             poster: faker.image.nightlife(500, 500, true),
             venue: {
@@ -97,7 +92,7 @@ const EventsSection = () => {
             ]
         },
         {
-            id: 0,
+            id: 2,
             name: faker.company.name(),
             poster: faker.image.nightlife(500, 500, true),
             venue: {
@@ -125,7 +120,7 @@ const EventsSection = () => {
             ]
         },
         {
-            id: 0,
+            id: 3,
             name: faker.company.name(),
             poster: faker.image.nightlife(500, 500, true),
             venue: {
@@ -153,7 +148,7 @@ const EventsSection = () => {
             ]
         },
         {
-            id: 0,
+            id: 4,
             name: faker.company.name(),
             poster: faker.image.nightlife(500, 500, true),
             venue: {
@@ -183,7 +178,8 @@ const EventsSection = () => {
     ]
 
     return (<Row className={'gx-5 gy-3'} style={{
-        flexWrap: 'nowrap'
+        flexWrap: 'nowrap',
+        overflow:  'hidden'
     }}>
         {
             list.map((_event, index) => (

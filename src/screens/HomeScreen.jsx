@@ -84,6 +84,7 @@ const HomeScreen = () => {
             <h2 className={'text-secondary text-center mb-3'}>Regular Spots</h2>
             <div style={{
                 overflowX: 'scroll',
+                /*overflow:  'hidden', */
                 maxWidth: '100%',
             }}>
                 <EventsSection />

@@ -19,5 +19,10 @@ const monthStringShort = (num) => {
     return months[num];
 }
 
+export const dayStringShort = (num) => {
+    const days = [ "Sun",  "Mon",  "Tue",  "wed",  "thu",  "Fri",  "Sat", ]
+    return days[num];
+}
+
 
 export {getAbbreviation, monthString, monthStringShort}
